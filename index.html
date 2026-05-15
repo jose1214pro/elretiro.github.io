@@ -1,0 +1,2443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Retiro – Restaurant Bar Familiar | Valle de Juárez, Jalisco</title>
+  <meta name="description" content="El Retiro, restaurante bar familiar en Valle de Juárez, Jalisco. Las originales aguas de lima y cocina mexicana tradicional. Sabor auténtico desde el corazón de Jalisco." />
+  <meta name="keywords" content="restaurante mexicano, Valle de Juárez, Jalisco, aguas de lima, cocina mexicana, El Retiro, bar familiar" />
+  <meta name="author" content="El Retiro Restaurant Bar Familiar" />
+  <meta property="og:title" content="El Retiro – Restaurant Bar Familiar" />
+  <meta property="og:description" content="Las Originales Aguas de Lima y Cocina Mexicana en Valle de Juárez, Jalisco." />
+  <meta property="og:type" content="restaurant" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       VARIABLES & RESET
+    ============================================================ */
+    :root {
+      --cafe-oscuro:   #1E0F06;
+      --cafe-medio:    #3B1F0C;
+      --cafe-madera:   #5C3317;
+      --cafe-suave:    #8B5E3C;
+      --naranja:       #C4622D;
+      --naranja-vivo:  #D9752E;
+      --naranja-claro: #E89560;
+      --beige-oscuro:  #C9A87C;
+      --beige:         #E8D5B0;
+      --beige-claro:   #F5EDD8;
+      --crema:         #FBF6EC;
+      --blanco:        #FFFFFF;
+      --texto-oscuro:  #1E0F06;
+      --texto-medio:   #5C3317;
+      --sombra-sm:     0 4px 16px rgba(30,15,6,0.10);
+      --sombra-md:     0 8px 32px rgba(30,15,6,0.15);
+      --sombra-lg:     0 20px 60px rgba(30,15,6,0.20);
+      --radio:         18px;
+      --transicion:    0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--crema);
+      color: var(--texto-oscuro);
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a  { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ============================================================
+       LOADER
+    ============================================================ */
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: var(--cafe-oscuro);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.7s ease, visibility 0.7s ease;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+
+    .loader-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--beige);
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-align: center;
+      animation: loaderPulse 1.6s ease-in-out infinite;
+    }
+    .loader-logo span {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.38em;
+      font-style: italic;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--naranja-claro);
+      margin-top: 6px;
+    }
+    .loader-line {
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--naranja), var(--naranja-claro));
+      margin-top: 24px;
+      border-radius: 2px;
+      animation: loaderLine 1.8s ease-in-out forwards;
+    }
+    @keyframes loaderPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    @keyframes loaderLine {
+      0%   { width: 0; }
+      100% { width: 180px; }
+    }
+
+    /* ============================================================
+       HEADER / NAV
+    ============================================================ */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 5%;
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(30, 15, 6, 0.55);
+      backdrop-filter: blur(18px) saturate(1.4);
+      -webkit-backdrop-filter: blur(18px) saturate(1.4);
+      border-bottom: 1px solid rgba(232, 149, 96, 0.18);
+      transition: background var(--transicion), box-shadow var(--transicion);
+    }
+    .header.scrolled {
+      background: rgba(30, 15, 6, 0.92);
+      box-shadow: 0 4px 30px rgba(30,15,6,0.45);
+    }
+
+    /* Logo */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-emblem {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 2px solid var(--naranja);
+      background: var(--cafe-medio);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    /* Si tienes un logo.png, descomenta esta línea y comenta el bloque .logo-letters */
+    /* .logo-emblem img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; } */
+    .logo-letters {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--naranja-claro);
+      letter-spacing: 0.04em;
+    }
+    .logo-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      color: var(--blanco);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+    .logo-text span {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.7rem;
+      color: var(--naranja-claro);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* Nav links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.82);
+      position: relative;
+      transition: color var(--transicion);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--naranja);
+      transition: width var(--transicion);
+    }
+    .nav-links a:hover { color: var(--naranja-claro); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 22px;
+      background: var(--naranja);
+      color: var(--blanco) !important;
+      border-radius: 50px;
+      font-size: 0.75rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.12em !important;
+      text-transform: uppercase !important;
+      border: 1.5px solid var(--naranja);
+      transition: background var(--transicion), transform var(--transicion), box-shadow var(--transicion) !important;
+    }
+    .btn-nav::after { display: none !important; }
+    .btn-nav:hover {
+      background: var(--naranja-vivo);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(196, 98, 45, 0.5) !important;
+      color: var(--blanco) !important;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--blanco);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 74px; left: 0; right: 0;
+      background: rgba(20, 10, 4, 0.97);
+      backdrop-filter: blur(20px);
+      padding: 32px 5% 40px;
+      flex-direction: column;
+      gap: 28px;
+      z-index: 999;
+      border-bottom: 1px solid rgba(196,98,45,0.2);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: rgba(255,255,255,0.88);
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding-bottom: 18px;
+      transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--naranja-claro); }
+    .mobile-menu .btn-nav-mobile {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 32px;
+      background: var(--naranja);
+      color: var(--blanco);
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      margin-top: 8px;
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Imagen de fondo — reemplaza con tu foto real */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        url('img/hero.jpg') center center / cover no-repeat;
+      transform: scale(1.06);
+      animation: heroZoom 12s ease-out forwards;
+    }
+    /* Fallback si no hay imagen */
+    .hero-bg-fallback {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        var(--cafe-oscuro) 0%,
+        var(--cafe-medio) 40%,
+        #6B3520 70%,
+        var(--cafe-madera) 100%
+      );
+    }
+    @keyframes heroZoom {
+      from { transform: scale(1.06); }
+      to   { transform: scale(1.00); }
+    }
+
+    /* Capas de overlay */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(20, 8, 2, 0.35) 0%,
+        rgba(20, 8, 2, 0.60) 50%,
+        rgba(20, 8, 2, 0.80) 100%
+      );
+    }
+    .hero-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          var(--naranja) 0,
+          var(--naranja) 1px,
+          transparent 0,
+          transparent 50%
+        );
+      background-size: 20px 20px;
+    }
+
+    /* Contenido hero */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 20px;
+      max-width: 860px;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--naranja-claro);
+      border: 1px solid rgba(232,149,96,0.5);
+      padding: 7px 20px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6.5vw, 5.2rem);
+      font-weight: 700;
+      color: var(--blanco);
+      line-height: 1.12;
+      letter-spacing: 0.02em;
+      margin-bottom: 10px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.65s forwards;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--naranja-claro);
+    }
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 22px auto;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.85s forwards;
+    }
+    .hero-divider span {
+      width: 60px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--naranja));
+    }
+    .hero-divider span:last-child {
+      background: linear-gradient(90deg, var(--naranja), transparent);
+    }
+    .hero-divider-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--naranja);
+    }
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.8vw, 1.6rem);
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(232, 213, 176, 0.92);
+      letter-spacing: 0.04em;
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: fadeUp 0.8s 1.0s forwards;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s 1.2s forwards;
+    }
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 38px;
+      background: var(--naranja);
+      color: var(--blanco);
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 2px solid var(--naranja);
+      transition: all var(--transicion);
+      cursor: pointer;
+    }
+    .btn-hero-primary:hover {
+      background: var(--naranja-vivo);
+      border-color: var(--naranja-vivo);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(196,98,45,0.55);
+    }
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 38px;
+      background: transparent;
+      color: var(--blanco);
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 2px solid rgba(255,255,255,0.45);
+      transition: all var(--transicion);
+      cursor: pointer;
+    }
+    .btn-hero-secondary:hover {
+      border-color: var(--naranja-claro);
+      color: var(--naranja-claro);
+      transform: translateY(-3px);
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp 0.8s 1.8s forwards;
+      cursor: pointer;
+    }
+    .scroll-indicator span {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .scroll-mouse {
+      width: 22px; height: 36px;
+      border: 1.5px solid rgba(255,255,255,0.35);
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      padding-top: 6px;
+    }
+    .scroll-mouse::before {
+      content: '';
+      width: 3px; height: 7px;
+      background: var(--naranja-claro);
+      border-radius: 2px;
+      animation: scrollBall 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollBall {
+      0%   { transform: translateY(0); opacity: 1; }
+      80%  { transform: translateY(10px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 0; }
+    }
+
+    /* ============================================================
+       ANIMACIONES DE ENTRADA
+    ============================================================ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ============================================================
+       SECTION UTILITIES
+    ============================================================ */
+    section { position: relative; }
+
+    .section-label {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: var(--naranja);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: var(--cafe-oscuro);
+      line-height: 1.18;
+      text-align: center;
+    }
+    .section-title em { font-style: italic; color: var(--naranja); }
+    .section-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-style: italic;
+      color: var(--cafe-suave);
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 18px 0;
+    }
+    .ornament-line {
+      height: 1px;
+      width: 50px;
+      background: linear-gradient(90deg, transparent, var(--naranja));
+    }
+    .ornament-line.right {
+      background: linear-gradient(90deg, var(--naranja), transparent);
+    }
+    .ornament-diamond {
+      width: 8px; height: 8px;
+      background: var(--naranja);
+      transform: rotate(45deg);
+      border-radius: 1px;
+    }
+
+    /* ============================================================
+       SECCIÓN INTRODUCCIÓN / NOSOTROS
+    ============================================================ */
+    .intro-section {
+      padding: 110px 5% 100px;
+      background: var(--crema);
+      overflow: hidden;
+    }
+
+    .intro-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    /* Texto */
+    .intro-text {}
+    .intro-text .section-label { color: var(--naranja); }
+    .intro-text .section-title { color: var(--cafe-oscuro); }
+
+    .intro-body {
+      margin-top: 24px;
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--cafe-suave);
+      font-weight: 300;
+    }
+    .intro-body p + p { margin-top: 16px; }
+    .intro-body strong {
+      color: var(--cafe-madera);
+      font-weight: 600;
+    }
+
+    .intro-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 36px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+    }
+    .feature-icon {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--naranja), var(--naranja-vivo));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(196,98,45,0.35);
+    }
+    .feature-icon svg {
+      width: 18px; height: 18px;
+      fill: var(--blanco);
+    }
+    .feature-info strong {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--cafe-oscuro);
+      letter-spacing: 0.04em;
+      margin-bottom: 3px;
+    }
+    .feature-info span {
+      font-size: 0.75rem;
+      color: var(--cafe-suave);
+    }
+
+    /* Imagen lado derecho */
+    .intro-visual {
+      position: relative;
+    }
+    .intro-img-wrap {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--sombra-lg);
+    }
+    .intro-img-wrap img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      border-radius: 24px;
+      transition: transform 0.8s ease;
+    }
+    .intro-img-wrap:hover img { transform: scale(1.04); }
+
+    /* Badge flotante */
+    .intro-badge-float {
+      position: absolute;
+      bottom: -28px;
+      left: -28px;
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      background: var(--naranja);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 28px rgba(196,98,45,0.5);
+      text-align: center;
+      padding: 12px;
+    }
+    .intro-badge-float strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      font-weight: 900;
+      color: var(--blanco);
+      line-height: 1;
+    }
+    .intro-badge-float span {
+      font-size: 0.55rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.88);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    /* Decoración esquina superior derecha */
+    .intro-deco {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 100px; height: 100px;
+      border: 2px solid var(--naranja);
+      border-radius: 50%;
+      opacity: 0.25;
+    }
+    .intro-deco::before {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border: 1px solid var(--naranja);
+      border-radius: 50%;
+    }
+
+        /* ============================================================
+      VALORES / PILARES
+    ============================================================ */
+    .pilares-section{
+      padding: 120px 5%;
+      background:
+        linear-gradient(to bottom,
+        #2a1207 0%,
+        #1a0903 100%);
+
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pilares-inner{
+      max-width: 1500px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .pilares-inner .section-label{
+      color: #d8a13a;
+    }
+
+    .pilares-inner .section-title{
+      color: #fff;
+      margin-top: 10px;
+    }
+
+    .pilares-inner .section-title em{
+      color: #d8a13a;
+    }
+
+    /* ============================================================
+      GRID
+    ============================================================ */
+    .pilares-grid{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 90px 70px;
+
+      justify-items: center;
+
+      margin-top: 90px;
+    }
+
+    /* ============================================================
+      ESTRELLA CARD
+    ============================================================ */
+    .pilar-card{
+      width: 420px;
+      height: 420px;
+
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      /* MÁS espacio interno */
+      padding: 120px 95px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f4c35a 0%,
+          #d89a28 45%,
+          #b87410 100%
+        );
+
+      clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 72%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+      );
+
+      overflow: hidden;
+    }
+
+    /* interior */
+    .pilar-card::before{
+      content:'';
+
+      position:absolute;
+
+      inset:8px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #2b1308,
+          #180803
+        );
+
+      clip-path: inherit;
+
+      z-index:1;
+    }
+
+    /* contenido */
+    .pilar-card > *{
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ICONO */
+    .pilar-icon{
+      font-size: 2.2rem;
+      margin-bottom: 14px;
+    }
+
+    /* TITULO */
+    .pilar-card h3{
+      font-family:'Playfair Display', serif;
+
+      font-size:1.55rem;
+      line-height:1.2;
+
+      color:#fff;
+
+      margin-bottom:12px;
+    }
+
+    /* TEXTO DENTRO DE LA ESTRELLA */
+.pilar-card p{
+  font-size: 0.65rem;
+
+  line-height: 1.55;
+
+  color: rgba(255,236,210,0.84);
+
+  max-width: 170px;
+
+  margin: 0 auto;
+
+  font-weight: 400;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+    /* ============================================================
+      RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1100px){
+
+      .pilares-grid{
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+    @media (max-width: 600px){
+
+      .pilares-section{
+        padding: 90px 6%;
+      }
+
+      .pilar-card{
+        width: 300px;
+        height: 300px;
+
+        padding: 70px 42px;
+      }
+
+      .pilar-icon{
+        font-size: 2rem;
+        margin-bottom: 16px;
+      }
+
+      .pilar-card h3{
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+      }
+
+      .pilar-card p{
+        font-size: 0.82rem;
+        line-height: 1.6;
+        max-width: 180px;
+      }
+
+    }
+
+    /* ============================================================
+       SECCIÓN VIDEOS
+    ============================================================ */
+    .videos-section {
+      padding: 110px 5% 100px;
+      background: var(--beige-claro);
+      overflow: hidden;
+    }
+
+    .videos-header {
+      max-width: 680px;
+      margin: 0 auto 70px;
+      text-align: center;
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .video-card {
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--sombra-lg);
+      background: var(--cafe-oscuro);
+      transition: transform var(--transicion), box-shadow var(--transicion);
+    }
+    .video-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 70px rgba(30,15,6,0.28);
+    }
+
+    /* Aquí va el video real — reemplaza src con tu archivo de video */
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      /* Ratio 16:9 */
+      padding-top: 56.25%;
+      background: var(--cafe-medio);
+      overflow: hidden;
+    }
+    .video-wrapper video,
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border: none;
+    }
+
+    /* Placeholder visual mientras no hay video */
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, var(--cafe-medio), var(--cafe-oscuro));
+      cursor: pointer;
+      transition: background var(--transicion);
+    }
+    .video-placeholder:hover { background: linear-gradient(160deg, #5C3317, #1E0F06); }
+    .play-btn {
+      width: 68px; height: 68px;
+      border-radius: 50%;
+      background: rgba(196,98,45,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      transition: transform var(--transicion), background var(--transicion);
+      box-shadow: 0 0 0 12px rgba(196,98,45,0.18);
+    }
+    .video-placeholder:hover .play-btn {
+      transform: scale(1.12);
+      background: var(--naranja-vivo);
+    }
+    .play-btn svg {
+      width: 26px; height: 26px;
+      fill: var(--blanco);
+      margin-left: 4px;
+    }
+    .video-placeholder span {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: rgba(232,213,176,0.7);
+      letter-spacing: 0.08em;
+    }
+
+    .video-info {
+      padding: 26px 28px 30px;
+      background: var(--cafe-oscuro);
+    }
+    .video-tag {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--naranja-claro);
+      margin-bottom: 9px;
+    }
+    .video-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.18rem;
+      font-weight: 600;
+      color: var(--beige);
+      margin-bottom: 8px;
+    }
+    .video-info p {
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: rgba(232,213,176,0.58);
+      font-weight: 300;
+    }
+
+    /* ============================================================
+       SECCIÓN COLLAGE DE FOTOS
+    ============================================================ */
+    .collage-section {
+      padding: 110px 5% 100px;
+      background: var(--crema);
+      overflow: hidden;
+    }
+
+    .collage-header {
+      max-width: 680px;
+      margin: 0 auto 70px;
+      text-align: center;
+    }
+
+    /* Collage masonry-style con CSS Grid puro */
+    .collage-grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 160px;
+      gap: 14px;
+    }
+
+    /* Celdas del collage — distribución editorial */
+    .collage-item {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--sombra-md);
+      cursor: pointer;
+    }
+    .collage-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+    .collage-item:hover img { transform: scale(1.08); }
+
+    /* Overlay en hover */
+    .collage-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(30,15,6,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transicion);
+    }
+    .collage-item:hover .collage-overlay {
+      background: rgba(30,15,6,0.45);
+    }
+    .collage-overlay-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: rgba(196,98,45,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.6);
+      transition: opacity var(--transicion), transform var(--transicion);
+    }
+    .collage-item:hover .collage-overlay-icon {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .collage-overlay-icon svg {
+      width: 20px; height: 20px;
+      fill: none;
+      stroke: var(--blanco);
+      stroke-width: 2;
+    }
+
+    /* Distribución del collage — 10 fotos en grid editorial */
+    /* Fila 1 */
+    .collage-item:nth-child(1)  { grid-column: 1 / 6;  grid-row: 1 / 3; }  /* grande izq */
+    .collage-item:nth-child(2)  { grid-column: 6 / 9;  grid-row: 1 / 2; }  /* med centro */
+    .collage-item:nth-child(3)  { grid-column: 9 / 13; grid-row: 1 / 3; }  /* grande der */
+    /* Fila 2 */
+    .collage-item:nth-child(4)  { grid-column: 6 / 9;  grid-row: 2 / 3; }  /* med centro bajo */
+    /* Fila 3 */
+    .collage-item:nth-child(5)  { grid-column: 1 / 4;  grid-row: 3 / 4; }  /* peq izq */
+    .collage-item:nth-child(6)  { grid-column: 4 / 8;  grid-row: 3 / 5; }  /* grande centro */
+    .collage-item:nth-child(7)  { grid-column: 8 / 10; grid-row: 3 / 4; }  /* peq centro-der */
+    .collage-item:nth-child(8)  { grid-column: 10 / 13; grid-row: 3 / 4; } /* peq der */
+    /* Fila 4 */
+    .collage-item:nth-child(9)  { grid-column: 1 / 4;  grid-row: 4 / 5; }  /* peq izq */
+    .collage-item:nth-child(10) { grid-column: 8 / 13; grid-row: 4 / 5; }  /* ancho der */
+
+    /* Placeholder de color si no hay imagen cargada */
+    .collage-item-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.06em;
+    }
+    .bg-1  { background: linear-gradient(135deg, #5C3317, #2C1A0E); }
+    .bg-2  { background: linear-gradient(135deg, #8B5E3C, #4A2C17); }
+    .bg-3  { background: linear-gradient(135deg, #C4622D, #8B5E3C); }
+    .bg-4  { background: linear-gradient(135deg, #4A2C17, #C4622D); }
+    .bg-5  { background: linear-gradient(135deg, #7A4A2A, #3B1F0C); }
+    .bg-6  { background: linear-gradient(135deg, #C4622D, #5C3317); }
+    .bg-7  { background: linear-gradient(135deg, #3B1F0C, #7A4A2A); }
+    .bg-8  { background: linear-gradient(135deg, #8B5E3C, #C4622D); }
+    .bg-9  { background: linear-gradient(135deg, #5C3317, #C4622D); }
+    .bg-10 { background: linear-gradient(135deg, #2C1A0E, #8B5E3C); }
+
+    /* Lightbox simple */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,4,1,0.94);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 24px; right: 30px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(196,98,45,0.9);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transicion);
+    }
+    .lightbox-close:hover { background: var(--naranja-vivo); }
+    .lightbox-close svg { width: 18px; height: 18px; stroke: white; stroke-width: 2; fill: none; }
+
+    /* CTA collage */
+    .collage-cta {
+      text-align: center;
+      margin-top: 54px;
+    }
+    .btn-outline-cafe {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 36px;
+      border: 2px solid var(--cafe-madera);
+      color: var(--cafe-madera);
+      background: transparent;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: all var(--transicion);
+      cursor: pointer;
+    }
+    .btn-outline-cafe:hover {
+      background: var(--naranja);
+      border-color: var(--naranja);
+      color: var(--blanco);
+      transform: translateY(-2px);
+      box-shadow: var(--sombra-md);
+    }
+
+        /* FIX DEFINITIVO COLLAGE */
+    .collage-item img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block !important;
+
+      opacity: 1 !important;
+      visibility: visible !important;
+
+      position: relative;
+      z-index: 2;
+
+      transform: scale(1);
+      transition: transform .6s ease;
+    }
+
+    .collage-item:hover img{
+      transform: scale(1.08);
+    }
+
+    /* fondo placeholder detrás */
+    .collage-item-bg{
+      z-index: 1;
+    }
+
+    /* overlay encima de la imagen */
+    .collage-overlay{
+      z-index: 3;
+    }
+
+    /* ============================================================
+       BANNER MEDIO — CTA RESERVAR
+    ============================================================ */
+    .cta-banner {
+      padding: 90px 5%;
+      background: linear-gradient(135deg, var(--cafe-medio) 0%, var(--cafe-oscuro) 60%, #0D0602 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        45deg, rgba(196,98,45,0.04) 0, rgba(196,98,45,0.04) 1px,
+        transparent 0, transparent 50%);
+      background-size: 24px 24px;
+    }
+    .cta-banner-inner { position: relative; max-width: 680px; margin: 0 auto; }
+    .cta-banner .section-label { color: var(--naranja-claro); }
+    .cta-banner .section-title { color: var(--blanco); }
+    .cta-banner .section-title em { color: var(--naranja-claro); }
+    .cta-banner p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: rgba(232,213,176,0.72);
+      margin: 16px 0 40px;
+    }
+    .cta-banner-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-orange {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 36px;
+      background: var(--naranja);
+      color: var(--blanco);
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 2px solid var(--naranja);
+      transition: all var(--transicion);
+    }
+    .btn-orange:hover {
+      background: var(--naranja-vivo);
+      border-color: var(--naranja-vivo);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(196,98,45,0.5);
+    }
+    .btn-ghost-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 36px;
+      background: transparent;
+      color: rgba(255,255,255,0.85);
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 2px solid rgba(255,255,255,0.3);
+      transition: all var(--transicion);
+    }
+    .btn-ghost-white:hover {
+      border-color: var(--naranja-claro);
+      color: var(--naranja-claro);
+      transform: translateY(-3px);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background: var(--cafe-oscuro);
+      padding: 70px 5% 30px;
+      border-top: 1px solid rgba(196,98,45,0.15);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 50px;
+      padding-bottom: 50px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .footer-brand .logo-text strong { color: var(--beige); font-size: 1.2rem; }
+    .footer-brand .logo-text span   { color: var(--naranja-claro); }
+
+    .footer-desc {
+      font-size: 0.82rem;
+      line-height: 1.8;
+      color: rgba(232,213,176,0.52);
+      margin-top: 16px;
+      font-weight: 300;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .social-link {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(196,98,45,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(232,213,176,0.6);
+      transition: all var(--transicion);
+    }
+    .social-link:hover {
+      background: var(--naranja);
+      border-color: var(--naranja);
+      color: var(--blanco);
+      transform: translateY(-3px);
+    }
+    .social-link svg { width: 16px; height: 16px; fill: currentColor; }
+
+    .footer-col h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--beige);
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 12px;
+    }
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 30px; height: 1px;
+      background: var(--naranja);
+    }
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+    .footer-col ul li a {
+      font-size: 0.8rem;
+      color: rgba(232,213,176,0.5);
+      transition: color var(--transicion);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-col ul li a:hover { color: var(--naranja-claro); }
+    .footer-col ul li a::before {
+      content: '';
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--naranja);
+      flex-shrink: 0;
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .footer-contact-icon {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: rgba(196,98,45,0.15);
+      border: 1px solid rgba(196,98,45,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .footer-contact-icon svg { width: 14px; height: 14px; fill: var(--naranja-claro); }
+    .footer-contact-item span {
+      font-size: 0.78rem;
+      color: rgba(232,213,176,0.55);
+      line-height: 1.6;
+      padding-top: 6px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 28px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p {
+      font-size: 0.72rem;
+      color: rgba(232,213,176,0.28);
+      letter-spacing: 0.05em;
+    }
+    .footer-bottom-links {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-bottom-links a {
+      font-size: 0.72rem;
+      color: rgba(232,213,176,0.28);
+      transition: color var(--transicion);
+    }
+    .footer-bottom-links a:hover { color: var(--naranja-claro); }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .intro-grid { grid-template-columns: 1fr; gap: 50px; }
+      .intro-visual { order: -1; }
+      .intro-img-wrap img { height: 380px; }
+      .intro-badge-float { bottom: -20px; left: -16px; width: 90px; height: 90px; }
+      .intro-badge-float strong { font-size: 1.5rem; }
+      .pilares-grid { grid-template-columns: 1fr 1fr; }
+      .videos-grid { grid-template-columns: 1fr; max-width: 640px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .hero-content { padding: 0 16px; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+
+      .intro-features { grid-template-columns: 1fr; }
+      .intro-badge-float { display: none; }
+
+      .pilares-grid { grid-template-columns: 1fr; }
+
+      /* Collage mobile: stack simple */
+      .collage-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 180px;
+      }
+      .collage-item { grid-column: auto !important; grid-row: auto !important; }
+
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .collage-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 220px;
+      }
+      .btn-hero-primary, .btn-hero-secondary {
+        padding: 14px 28px;
+        font-size: 0.76rem;
+      }
+    }
+
+        html, body {
+      /* Intentamos cargar tu imagen */
+      /* El 16 16 centra el punto de clic en medio de una imagen de 32x32 */
+      cursor: url('cuchara.png') 16 16, auto !important;
+      min-height: 100vh;
+    }
+
+/* ============================================================
+   CAMARONES REBOTANDO
+============================================================ */
+.videos-section{
+  position: relative;
+  overflow: hidden;
+}
+
+.camaron-float{
+  position: absolute;
+
+  width: 140px;
+
+  opacity: 0.8;
+
+  z-index: 0;
+
+  pointer-events: none;
+}
+
+/* contenido encima */
+.videos-header,
+.videos-grid{
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================================
+   CAMARÓN 1
+============================================================ */
+.camaron-1{
+  animation:
+    shrimpMove1 18s linear infinite,
+    shrimpRotate1 7s ease-in-out infinite alternate;
+}
+
+/* ============================================================
+   CAMARÓN 2
+============================================================ */
+.camaron-2{
+  width: 110px;
+
+  animation:
+    shrimpMove2 22s linear infinite,
+    shrimpRotate2 6s ease-in-out infinite alternate;
+}
+
+/* ============================================================
+   MOVIMIENTO 1
+============================================================ */
+@keyframes shrimpMove1{
+
+  0%{
+    top: 8%;
+    left: 5%;
+  }
+
+  25%{
+    top: 14%;
+    left: 82%;
+  }
+
+  50%{
+    top: 68%;
+    left: 74%;
+  }
+
+  75%{
+    top: 72%;
+    left: 8%;
+  }
+
+  100%{
+    top: 8%;
+    left: 5%;
+  }
+
+}
+
+@keyframes shrimpRotate1{
+
+  0%{
+    transform: rotate(-10deg);
+  }
+
+  100%{
+    transform: rotate(10deg);
+  }
+
+}
+
+/* ============================================================
+   MOVIMIENTO 2
+============================================================ */
+@keyframes shrimpMove2{
+
+  0%{
+    top: 70%;
+    left: 80%;
+  }
+
+  25%{
+    top: 18%;
+    left: 68%;
+  }
+
+  50%{
+    top: 12%;
+    left: 10%;
+  }
+
+  75%{
+    top: 75%;
+    left: 18%;
+  }
+
+  100%{
+    top: 70%;
+    left: 80%;
+  }
+
+}
+
+@keyframes shrimpRotate2{
+
+  0%{
+    transform: rotate(8deg);
+  }
+
+  100%{
+    transform: rotate(-12deg);
+  }
+
+}
+    
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       LOADER
+  ============================================================ -->
+  <div class="loader" id="loader">
+    <div class="loader-logo">
+      El Retiro
+      <span>Restaurant Bar Familiar</span>
+    </div>
+    <div class="loader-line"></div>
+  </div>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header class="header" id="header">
+
+  <a href="index.html" class="nav-logo">
+    <div class="logo-emblem">
+      <img src="logo.png" alt="El Retiro">
+    </div>  
+
+    <div class="logo-text">
+      <strong>El Retiro</strong>
+      <span>Valle de Juárez, Jal.</span>
+    </div>
+  </a>
+
+  <!-- ============================================================
+       NAV DESKTOP
+  ============================================================ -->
+  <nav class="nav-links">
+
+    <a href="index.html">Inicio</a>
+
+    <a href="menu.html">Menú</a>
+
+    <a href="ubicacion.html">Ubicación</a>
+
+    <a href="contacto.html">Contacto</a>
+
+    <!-- BOTÓN VER MENÚ DESKTOP -->
+    <a href="./elretiro.pdf" target="_blank" class="btn-nav">
+
+      <svg 
+        width="14" 
+        height="14" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="2.5">
+
+        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+
+      </svg>
+
+      Ver Menú
+
+    </a>
+
+  </nav>
+
+  <!-- ============================================================
+       HAMBURGER
+  ============================================================ -->
+  <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+  </button>
+
+</header>
+
+<!-- ============================================================
+     MOBILE MENU
+============================================================ -->
+<nav class="mobile-menu" id="mobileMenu">
+
+  <a href="index.html">Inicio</a>
+
+  <a href="menu.html">Menú</a>
+
+  <a href="ubicacion.html">Ubicación</a>
+
+  <a href="contacto.html">Contacto</a>
+
+  <!-- BOTÓN VER MENÚ MOBILE -->
+  <a href="./elretiro.pdf" target="_blank" class="btn-nav-mobile">
+
+    Ver Menú Completo
+
+  </a>
+
+</nav>
+
+<style>
+/* ============================================================
+   BOTONES PDF
+============================================================ */
+
+.btn-nav,
+.btn-nav-mobile{
+  text-decoration:none;
+}
+</style>
+
+<script>
+const mobileBtn = document.getElementById("openPdfBtn");
+const desktopBtn = document.getElementById("openPdfDesktop");
+const pdfViewer = document.getElementById("pdfViewer");
+const closeBtn = document.getElementById("closePdf");
+
+/* ABRIR PDF */
+function openPDF(e){
+  e.preventDefault();
+  pdfViewer.style.display = "block";
+}
+
+/* BOTÓN MOBILE */
+mobileBtn.addEventListener("click", openPDF);
+
+/* BOTÓN DESKTOP */
+desktopBtn.addEventListener("click", openPDF);
+
+/* CERRAR PDF */
+closeBtn.addEventListener("click", function(){
+  pdfViewer.style.display = "none";
+});
+</script>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="inicio">
+    <!-- FONDO: reemplaza hero.jpg con tu foto real del restaurante -->
+    <div class="hero-bg-fallback"></div>
+    <div class="hero-bg" style="background-image: url('elretiro.jpg');"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-pattern"></div>
+
+    <div class="hero-content">
+      <span class="hero-badge">✦ Valle de Juárez, Jalisco ✦</span>
+
+      <h1 class="hero-title">
+        Restaurant Bar Familiar<br>
+        <em>El Retiro</em>
+      </h1>
+
+      <div class="hero-divider">
+        <span></span>
+        <div class="hero-divider-dot"></div>
+        <span class="right"></span>
+      </div>
+
+      <p class="hero-subtitle">
+        Las Originales Aguas de Lima y Cocina Mexicana
+      </p>
+
+      <div class="hero-ctas">
+        <a href="menu.html" class="btn-hero-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2"/></svg>
+          Explorar Menú
+        </a>
+        <a href="ubicacion.html" class="btn-hero-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Cómo Llegar
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" onclick="document.getElementById('nosotros').scrollIntoView({behavior:'smooth'})">
+      <span>Scroll</span>
+      <div class="scroll-mouse"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INTRODUCCIÓN / NOSOTROS
+  ============================================================ -->
+  <section class="intro-section" id="nosotros">
+    <div class="intro-grid">
+
+      <!-- Texto -->
+      <div class="intro-text">
+        <span class="section-label reveal">✦ Nuestra Historia</span>
+
+        <h2 class="section-title reveal">
+          Un lugar donde la <em>tradición</em> se sirve<br>
+          en cada mesa
+        </h2>
+
+        <div class="ornament reveal">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line right"></div>
+        </div>
+
+        <div class="intro-body reveal">
+          <p>
+            En el corazón de <strong>Valle de Juárez, Jalisco</strong>, nació El Retiro con una misión sencilla pero profunda: llevar a cada comensal los sabores auténticos de la cocina mexicana, preparados con amor, ingredientes frescos y la sazón que solo la tradición familiar puede ofrecer.
+          </p>
+          <p>
+            Somos reconocidos en toda la región por nuestras <strong>Originales Aguas de Lima</strong>, una receta que ha pasado de generación en generación y que hoy es nuestra carta de presentación. Acompañadas de platillos típicos jaliscienses, cada visita se convierte en una experiencia que regresa al sabor de lo genuino.
+          </p>
+          <p>
+            Más que un restaurante, El Retiro es un espacio familiar, un punto de encuentro donde las conversaciones fluyen tan naturalmente como nuestros sabores.
+          </p>
+        </div>
+
+        <div class="intro-features reveal">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+            </div>
+            <div class="feature-info">
+              <strong>Sabor Auténtico</strong>
+              <span>Recetas tradicionales jaliscienses</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            </div>
+            <div class="feature-info">
+              <strong>Bar Familiar</strong>
+              <span>Ambiente cálido y acogedor</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M18.6 6.62c-1.44 0-2.8.56-3.77 1.53L12 10.66 10.48 12h.01L7.8 14.39c-.64.64-1.49.99-2.4.99-1.87 0-3.39-1.52-3.39-3.39S3.53 8.6 5.4 8.6c.91 0 1.76.35 2.44 1.03l1.13 1 1.51-1.34L9.22 8.2C8.2 7.18 6.84 6.62 5.4 6.62 2.42 6.62 0 9.04 0 12s2.42 5.38 5.4 5.38c1.44 0 2.8-.56 3.77-1.53l2.83-2.5.01.01L13.52 12h-.01l2.69-2.39c.64-.64 1.49-.99 2.4-.99 1.87 0 3.39 1.52 3.39 3.39s-1.52 3.39-3.39 3.39c-.9 0-1.76-.35-2.44-1.03l-1.14-1.01-1.51 1.34 1.27 1.12c1.02 1.01 2.37 1.57 3.82 1.57 2.98 0 5.4-2.41 5.4-5.38s-2.42-5.39-5.4-5.39z"/></svg>
+            </div>
+            <div class="feature-info">
+              <strong>Aguas de Lima</strong>
+              <span>Las originales de la región</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div class="feature-info">
+              <strong>Calidad Premium</strong>
+              <span>Ingredientes frescos y locales</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual -->
+      <div class="intro-visual reveal-right">
+  <div class="intro-deco"></div>
+  <div class="intro-img-wrap">
+    <video 
+      autoplay 
+      loop 
+      muted 
+      playsinline
+      style="width: 100%; height: 100%; object-fit: cover; display: block;"
+      poster="img/restaurante.jpg"> <source src="video1.mp4" type="video/mp4">
+      Tu navegador no soporta videos.
+    </video>
+  </div>
+  
+  <div class="intro-badge-float">
+    <strong>+</strong>
+    <span>Años<br>de Sazón</span>
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+   PILARES / VALORES
+  ============================================================ -->
+    <section class="pilares-section">
+    <div class="pilares-inner">
+
+      <span class="section-label reveal">✦ Lo que nos distingue</span>
+
+      <h2 class="section-title reveal">
+        Lo que hace especial a <em>El Retiro</em>
+      </h2>
+
+      <div class="pilares-grid">
+
+        <div class="pilar-card reveal">
+          <div class="pilar-icon">🍋</div>
+          <h3>Aguas de Lima</h3>
+          <p>
+            Las originales de la región.<br>
+            Preparadas al momento con el sabor tradicional <br>
+          </p>
+        </div>
+
+        <div class="pilar-card reveal" style="transition-delay: 0.15s">
+          <div class="pilar-icon">🌮</div>
+          <h3>Sabor Casero</h3>
+          <p>
+            Comida mexicana<br> hecha como en casa,<br>
+            con recetas tradicionales,<br>
+          </p>
+        </div>
+
+        <div class="pilar-card reveal" style="transition-delay: 0.3s">
+          <div class="pilar-icon">👨‍👩‍👧‍👦</div>
+          <h3>Ambiente Familiar</h3>
+          <p>
+            Un lugar tranquilo<br> para venir con familia,<br>
+            amigos o visitantes y disfrutar<br>
+          </p>
+        </div>
+
+        <div class="pilar-card reveal" style="transition-delay: 0.45s">
+          <div class="pilar-icon">⭐</div>
+          <h3>Tradición de Valle</h3>
+          <p>
+            Años compartiendo<br> sabores y momentos<br>
+             con la gente de Valle de Juárez
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+<!-- ============================================================
+     SECCIÓN VIDEOS
+============================================================ -->
+<section class="videos-section" id="videos">
+  <!-- CAMARÓN FLOTANTE -->
+<!-- CAMARONES FLOTANTES -->
+<img src="camaron.webp" class="camaron-float camaron-1" alt="">
+<img src="camaron.webp" class="camaron-float camaron-2" alt="">
+  <div class="videos-header">
+    
+    <span class="section-label reveal">✦ Conoce El Retiro</span>
+
+    <h2 class="section-title reveal">
+      Vive la <em>experiencia</em> antes de llegar
+    </h2>
+
+    <p class="section-subtitle reveal">
+      Déjate llevar por los aromas y sabores que solo El Retiro puede ofrecerte.
+    </p>
+  </div>
+
+  <div class="videos-grid">
+
+    <!-- VIDEO 1 -->
+    <div class="video-card reveal-left">
+      <div class="video-wrapper">
+
+        <video muted loop playsinline preload="auto">
+          <source src="video2.mp4" type="video/mp4">
+        </video>
+
+      </div>
+
+      <div class="video-info">
+        <span class="video-tag">✦ Nuestro Restaurante</span>
+
+        <h3>El Retiro — Un sabor que enamora</h3>
+
+        <p>
+          Conoce el ambiente, la cocina y la pasión que hay detrás de cada platillo que preparamos para ti y tu familia en Valle de Juárez.
+        </p>
+      </div>
+    </div>
+
+    <!-- VIDEO 2 -->
+    <div class="video-card reveal-right">
+      <div class="video-wrapper">
+
+        <video muted loop playsinline preload="auto">
+          <source src="video3.mp4" type="video/mp4">
+        </video>
+
+      </div>
+
+      <div class="video-info">
+        <span class="video-tag">✦ Nuestra Historia</span>
+
+        <h3>Historia y tradición en Valle de Juárez</h3>
+
+        <p>
+          Descubre cómo nació El Retiro y la historia familiar que está detrás de las recetas más queridas de nuestra comunidad jalisciense.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const videos = document.querySelectorAll(".video-card video");
+
+  const observer = new IntersectionObserver(function(entries){
+
+    entries.forEach(function(entry){
+
+      const video = entry.target;
+
+      if(entry.isIntersecting){
+
+        video.play();
+
+      } else {
+
+        video.pause();
+        video.currentTime = 0;
+
+      }
+
+    });
+
+  }, {
+    threshold: 0.6
+  });
+
+  videos.forEach(function(video){
+    observer.observe(video);
+  });
+
+});
+</script>
+
+  <!-- ============================================================
+       COLLAGE DE FOTOS
+  ============================================================ -->
+  <section class="collage-section" id="galeria">
+    <div class="collage-header">
+      <span class="section-label reveal">✦ Galería</span>
+      <h2 class="section-title reveal">
+        Ven a vivir momentos que <em>saben</em><br>a El Retiro
+      </h2>
+      <p class="section-subtitle reveal">
+        Una mirada a nuestro ambiente, nuestros platillos y la calidez que nos distingue.
+      </p>
+    </div>
+
+    <div class="collage-grid">
+
+      <!--
+        INSTRUCCIONES DE IMÁGENES:
+        Coloca tus fotos en la carpeta "img/" con los nombres foto1.jpg, foto2.jpg, etc.
+        El atributo onerror muestra un fondo de color si la imagen no se encuentra.
+        Tamaño recomendado: mínimo 800px en el lado más corto.
+        Puedes cambiar el alt text por la descripción real de cada foto.
+      -->
+
+      <div class="collage-item">
+        <div class="collage-item-bg bg-1">foto 1</div>
+        <img src="img/foto1.jpg" alt="Ambiente El Retiro"
+          onerror="this.style.display='none'">
+        <div class="collage-overlay">
+          <div class="collage-overlay-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="collage-item">
+        <div class="collage-item-bg bg-2">foto 2</div>
+        <img src="img/foto2.jpg" alt="Platillos El Retiro"
+          onerror="this.style.display='none'">
+        <div class="collage-overlay">
+          <div class="collage-overlay-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="collage-item">
+        <div class="collage-item-bg bg-3">foto 3</div>
+        <img src="img/foto3.jpg" alt="Aguas de Lima"
+          onerror="this.style.display='none'">
+        <div class="collage-overlay">
+          <div class="collage-overlay-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="collage-item">
+        <div class="collage-item-bg bg-4">foto 4</div>
+        <img src="img/foto4.jpg" alt="Cocina El Retiro"
+          onerror="this.style.display='none'">
+        <div class="collage-overlay">
+          <div class="collage-overlay-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="collage-item">
+        <div class="collage-item-bg bg-5">foto 5</div>
+        <img src="img/foto5.jpg" alt="Exterior restaurante"
+          onerror="this.style.display='none'">
+        <div class="collage-overlay">
+          <div class="collage-overlay-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="collage-item">
+        <div class="collage-item-bg bg-6">foto 6</div>
+        <img src="img/foto6.jpg" alt="Familia en El Retiro"
+          onerror="this.style.display='none'">
+        <div class="collage-overlay">
+          <div class="collage-overlay-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="collage-item">
+        <div class="collage-item-bg bg-7">foto 7</div>
+        <img src="img/foto7.jpg" alt="Detalles del restaurante"
+          onerror="this.style.display='none'">
+        <div class="collage-overlay">
+          <div class="collage-overlay-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="collage-item">
+        <div class="collage-item-bg bg-8">foto 8</div>
+        <img src="img/foto8.jpg" alt="Bebidas El Retiro"
+          onerror="this.style.display='none'">
+        <div class="collage-overlay">
+          <div class="collage-overlay-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="collage-item">
+        <div class="collage-item-bg bg-9">foto 9</div>
+        <img src="img/foto9.jpg" alt="Mesa familiar"
+          onerror="this.style.display='none'">
+        <div class="collage-overlay">
+          <div class="collage-overlay-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="collage-item">
+        <div class="collage-item-bg bg-10">foto 10</div>
+        <img src="img/foto10.jpg" alt="Valle de Juárez"
+          onerror="this.style.display='none'">
+        <div class="collage-overlay">
+          <div class="collage-overlay-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="collage-cta reveal">
+      <a href="menu.html" class="btn-outline-cafe">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2"/></svg>
+        Ver Menú Completo
+      </a>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('open')">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
+
+  <!-- ============================================================
+       CTA BANNER
+  ============================================================ -->
+  <section class="cta-banner">
+    <div class="cta-banner-inner">
+      <span class="section-label reveal">✦ Visítanos</span>
+      <h2 class="section-title reveal">
+        ¿Listo para vivir<br>la <em>experiencia</em> El Retiro?
+      </h2>
+      <p class="reveal">
+        Te esperamos con los brazos abiertos y los sabores más auténticos de Jalisco.
+      </p>
+      <div class="cta-banner-btns reveal">
+        <a href="menu.html" class="btn-orange">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2"/></svg>
+          Ver el Menú
+        </a>
+        <a href="contacto.html" class="btn-ghost-white">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          Contáctanos
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="footer-top">
+
+      <!-- Marca -->
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="logo-emblem" style="border-color: rgba(196,98,45,0.5);">
+            <span class="logo-letters">ER</span>
+          </div>
+          <div class="logo-text">
+            <strong>El Retiro</strong>
+            <span>Restaurant Bar Familiar</span>
+          </div>
+        </div>
+        <p class="footer-desc">
+          Las Originales Aguas de Lima y Cocina Mexicana. Un espacio donde la tradición y el sabor jalisciense se fusionan para crear momentos únicos en Valle de Juárez.
+        </p>
+      </div>
+
+      <!-- Navegación -->
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="menu.html">Nuestro Menú</a></li>
+          <li><a href="ubicacion.html">Cómo Llegar</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+
+      <!-- Contacto -->
+      <div class="footer-col">
+        <h4>Contáctanos</h4>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <span>Valle de Juárez, Jalisco<br>México</span>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          </div>
+          <!-- Reemplaza con tu número real -->
+          <span>+52 (382) 571-0218</span>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <span>Lun – Dom<br>10:00 am – 9:00 pm</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 El Retiro Restaurant Bar Familiar. Todos los derechos reservados.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Aviso de Privacidad</a>
+        <a href="#">Términos de Uso</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    /* ---- LOADER ---- */
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 1400);
+    });
+
+    /* ---- HEADER scroll ---- */
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* ---- HAMBURGER ---- */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+    });
+    // Cerrar menú al hacer click en link
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    /* ---- SCROLL REVEAL ---- */
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    /* ---- LIGHTBOX (collage) ---- */
+    const lightbox    = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+
+    document.querySelectorAll('.collage-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        if (img && img.src && !img.style.display.includes('none')) {
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt;
+          lightbox.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
+    function closeLightbox(e) {
+      if (e.target === lightbox || e.target.closest('.lightbox-close')) {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+        lightboxImg.src = '';
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+        lightboxImg.src = '';
+      }
+    });
+  </script>
+
+</body>
+</html>

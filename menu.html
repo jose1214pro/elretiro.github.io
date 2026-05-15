@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menú – El Retiro | Restaurant Bar Familiar | Valle de Juárez, Jalisco</title>
+  <meta name="description" content="Menú completo de El Retiro. Cocina mexicana, camarones, carnes, aves, pozole, tostadas, bebidas y más en Valle de Juárez, Jalisco." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       VARIABLES & RESET — idénticas al index
+    ============================================================ */
+    :root {
+      --cafe-oscuro:   #1E0F06;
+      --cafe-medio:    #3B1F0C;
+      --cafe-madera:   #5C3317;
+      --cafe-suave:    #8B5E3C;
+      --naranja:       #C4622D;
+      --naranja-vivo:  #D9752E;
+      --naranja-claro: #E89560;
+      --beige-oscuro:  #C9A87C;
+      --beige:         #E8D5B0;
+      --beige-claro:   #F5EDD8;
+      --crema:         #FBF6EC;
+      --blanco:        #FFFFFF;
+      --texto-oscuro:  #1E0F06;
+      --texto-medio:   #5C3317;
+      --sombra-sm:     0 4px 16px rgba(30,15,6,0.10);
+      --sombra-md:     0 8px 32px rgba(30,15,6,0.15);
+      --sombra-lg:     0 20px 60px rgba(30,15,6,0.20);
+      --radio:         18px;
+      --transicion:    0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--crema); color: var(--texto-oscuro); overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a  { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ============================================================
+       LOADER
+    ============================================================ */
+    .loader { position: fixed; inset: 0; background: var(--cafe-oscuro); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.7s ease, visibility 0.7s ease; }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-logo { font-family: 'Playfair Display', serif; color: var(--beige); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 700; letter-spacing: 0.12em; text-align: center; animation: loaderPulse 1.6s ease-in-out infinite; }
+    .loader-logo span { display: block; font-family: 'Cormorant Garamond', serif; font-size: 0.38em; font-style: italic; font-weight: 300; letter-spacing: 0.3em; color: var(--naranja-claro); margin-top: 6px; }
+    .loader-line { width: 0; height: 2px; background: linear-gradient(90deg, var(--naranja), var(--naranja-claro)); margin-top: 24px; border-radius: 2px; animation: loaderLine 1.8s ease-in-out forwards; }
+    @keyframes loaderPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    @keyframes loaderLine { 0% { width: 0; } 100% { width: 180px; } }
+
+    /* ============================================================
+       HEADER / NAV — idéntico al index
+    ============================================================ */
+    .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 5%; height: 74px; display: flex; align-items: center; justify-content: space-between; background: rgba(30, 15, 6, 0.55); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border-bottom: 1px solid rgba(232, 149, 96, 0.18); transition: background var(--transicion), box-shadow var(--transicion); }
+    .header.scrolled { background: rgba(30, 15, 6, 0.92); box-shadow: 0 4px 30px rgba(30,15,6,0.45); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .logo-emblem { width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--naranja); background: var(--cafe-medio); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .logo-letters { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--naranja-claro); letter-spacing: 0.04em; }
+    .logo-text strong { display: block; font-family: 'Playfair Display', serif; color: var(--blanco); font-size: 1.05rem; font-weight: 700; letter-spacing: 0.08em; }
+    .logo-text span { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.7rem; color: var(--naranja-claro); letter-spacing: 0.15em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-links a { font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.82); position: relative; transition: color var(--transicion); }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: var(--naranja); transition: width var(--transicion); }
+    .nav-links a:hover { color: var(--naranja-claro); }
+    .nav-links a:hover::after { width: 100%; }
+    .btn-nav { display: inline-flex; align-items: center; gap: 8px; padding: 9px 22px; background: var(--naranja); color: var(--blanco) !important; border-radius: 50px; font-size: 0.75rem !important; font-weight: 600 !important; letter-spacing: 0.12em !important; text-transform: uppercase !important; border: 1.5px solid var(--naranja); transition: background var(--transicion), transform var(--transicion), box-shadow var(--transicion) !important; }
+    .btn-nav::after { display: none !important; }
+    .btn-nav:hover { background: var(--naranja-vivo); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(196, 98, 45, 0.5) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--blanco); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: 74px; left: 0; right: 0; background: rgba(20, 10, 4, 0.97); backdrop-filter: blur(20px); padding: 32px 5% 40px; flex-direction: column; gap: 28px; z-index: 999; border-bottom: 1px solid rgba(196,98,45,0.2); }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: rgba(255,255,255,0.88); font-size: 1.1rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.07); padding-bottom: 18px; transition: color 0.3s; }
+    .mobile-menu a:hover { color: var(--naranja-claro); }
+    .mobile-menu .btn-nav-mobile { display: inline-flex; align-items: center; justify-content: center; padding: 14px 32px; background: var(--naranja); color: var(--blanco); border-radius: 50px; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; border: none; margin-top: 8px; }
+
+    /* ============================================================
+       ANIMACIONES
+    ============================================================ */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ============================================================
+       HERO MENÚ
+    ============================================================ */
+    .menu-hero {
+      position: relative;
+      height: 52vh;
+      min-height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .menu-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, var(--cafe-oscuro) 0%, var(--cafe-medio) 50%, #6B3520 100%);
+    }
+    .menu-hero-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.05;
+      background-image: repeating-linear-gradient(45deg, var(--naranja) 0, var(--naranja) 1px, transparent 0, transparent 50%);
+      background-size: 20px 20px;
+    }
+    .menu-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(20,8,2,0.2) 0%, rgba(20,8,2,0.65) 100%);
+    }
+    .menu-hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .menu-hero-badge {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--naranja-claro);
+      border: 1px solid rgba(232,149,96,0.5);
+      padding: 7px 20px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+      animation: fadeUp 0.8s 0.3s both;
+    }
+    .menu-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+      font-weight: 700;
+      color: var(--blanco);
+      line-height: 1.12;
+      animation: fadeUp 0.9s 0.5s both;
+    }
+    .menu-hero-title em { font-style: italic; color: var(--naranja-claro); }
+    .menu-hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2.2vw, 1.4rem);
+      font-style: italic;
+      color: rgba(232,213,176,0.85);
+      margin-top: 16px;
+      animation: fadeUp 0.8s 0.7s both;
+    }
+
+    /* ============================================================
+       FILTROS / NAV MENÚ
+    ============================================================ */
+    .menu-nav-wrap {
+      background: var(--cafe-oscuro);
+      position: sticky;
+      top: 74px;
+      z-index: 900;
+      border-bottom: 1px solid rgba(196,98,45,0.2);
+    }
+    .menu-nav {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 5%;
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .menu-nav::-webkit-scrollbar { display: none; }
+    .menu-nav-btn {
+      flex-shrink: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(232,213,176,0.55);
+      padding: 18px 20px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: color 0.3s, border-color 0.3s;
+      white-space: nowrap;
+    }
+    .menu-nav-btn:hover { color: var(--naranja-claro); }
+    .menu-nav-btn.active { color: var(--naranja-claro); border-bottom-color: var(--naranja); }
+
+    /* ============================================================
+       SECCIONES DEL MENÚ
+    ============================================================ */
+    .menu-body {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 80px 5% 100px;
+    }
+
+    .menu-section {
+      margin-bottom: 90px;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+    .section-label {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: var(--naranja);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--cafe-oscuro);
+      line-height: 1.18;
+    }
+    .section-title em { font-style: italic; color: var(--naranja); }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 16px 0 0;
+    }
+    .ornament-line { height: 1px; width: 50px; background: linear-gradient(90deg, transparent, var(--naranja)); }
+    .ornament-line.right { background: linear-gradient(90deg, var(--naranja), transparent); }
+    .ornament-diamond { width: 8px; height: 8px; background: var(--naranja); transform: rotate(45deg); border-radius: 1px; }
+
+    /* ============================================================
+       GRID DE PLATILLOS (cards con foto)
+    ============================================================ */
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 28px;
+    }
+
+    .item-card {
+      background: var(--blanco);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--sombra-sm);
+      transition: transform var(--transicion), box-shadow var(--transicion);
+      cursor: default;
+    }
+    .item-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--sombra-lg);
+    }
+    .item-card-img {
+      position: relative;
+      width: 100%;
+      padding-top: 72%;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--cafe-medio), var(--cafe-oscuro));
+    }
+    .item-card-img img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .item-card:hover .item-card-img img { transform: scale(1.08); }
+    .item-card-img-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.8rem;
+      color: rgba(232,213,176,0.4);
+    }
+    .item-card-body {
+      padding: 20px 22px 24px;
+    }
+    .item-card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--cafe-oscuro);
+      line-height: 1.3;
+    }
+    .item-card-tag {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--naranja);
+      background: rgba(196,98,45,0.08);
+      padding: 4px 12px;
+      border-radius: 50px;
+    }
+
+    /* ============================================================
+       SECCIÓN TEQUILAS — grid más pequeño (más botellas)
+    ============================================================ */
+    .tequilas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 22px;
+    }
+    .tequila-card {
+      background: var(--cafe-oscuro);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--sombra-sm);
+      transition: transform var(--transicion), box-shadow var(--transicion);
+      border: 1px solid rgba(196,98,45,0.18);
+    }
+    .tequila-card:hover { transform: translateY(-6px); box-shadow: var(--sombra-lg); }
+    .tequila-img {
+      position: relative;
+      padding-top: 90%;
+      overflow: hidden;
+      background: linear-gradient(180deg, #2a1207, #0d0602);
+    }
+    .tequila-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .tequila-card:hover .tequila-img img { transform: scale(1.06); }
+    .tequila-body { padding: 16px 18px 20px; }
+    .tequila-name { font-family: 'Playfair Display', serif; font-size: 0.92rem; font-weight: 600; color: var(--beige); line-height: 1.3; }
+    .tequila-type { display: inline-block; margin-top: 7px; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--naranja-claro); }
+
+    /* ============================================================
+       DIVISOR ENTRE SECCIONES
+    ============================================================ */
+    .section-divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(196,98,45,0.25), transparent);
+      margin: 0 0 90px;
+    }
+
+    /* ============================================================
+       BEBIDAS — fondo oscuro
+    ============================================================ */
+    .bebidas-section-wrap {
+      background: linear-gradient(to bottom, #2a1207, #1a0903);
+      padding: 90px 5%;
+      margin: 0 -5% 90px;
+    }
+    .bebidas-section-wrap .section-title { color: var(--blanco); }
+    .bebidas-section-wrap .section-title em { color: var(--naranja-claro); }
+    .bebidas-section-wrap .section-label { color: var(--naranja-claro); }
+    .bebidas-section-wrap .ornament-line { background: linear-gradient(90deg, transparent, var(--naranja-claro)); }
+    .bebidas-section-wrap .ornament-line.right { background: linear-gradient(90deg, var(--naranja-claro), transparent); }
+    .bebidas-section-wrap .ornament-diamond { background: var(--naranja-claro); }
+
+    .bebida-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(196,98,45,0.2);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform var(--transicion), box-shadow var(--transicion);
+    }
+    .bebida-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); border-color: rgba(196,98,45,0.45); }
+    .bebida-img { position: relative; padding-top: 72%; overflow: hidden; background: #0d0602; }
+    .bebida-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .bebida-card:hover .bebida-img img { transform: scale(1.07); }
+    .bebida-body { padding: 18px 20px 22px; }
+    .bebida-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--beige); }
+    .bebida-tag { display: inline-block; margin-top: 7px; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--naranja-claro); }
+
+    /* ============================================================
+       LICORES Y BRANDYS — igual que bebidas
+    ============================================================ */
+    .licor-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(196,98,45,0.2);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform var(--transicion), box-shadow var(--transicion);
+    }
+    .licor-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); border-color: rgba(196,98,45,0.45); }
+    .licor-img { position: relative; padding-top: 90%; overflow: hidden; background: #0d0602; }
+    .licor-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .licor-card:hover .licor-img img { transform: scale(1.07); }
+    .licor-body { padding: 16px 18px 20px; }
+    .licor-name { font-family: 'Playfair Display', serif; font-size: 0.92rem; font-weight: 600; color: var(--beige); line-height: 1.3; }
+    .licor-tag { display: inline-block; margin-top: 7px; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--naranja-claro); }
+
+    /* ============================================================
+       CTA BANNER
+    ============================================================ */
+    .cta-banner {
+      padding: 90px 5%;
+      background: linear-gradient(135deg, var(--cafe-medio) 0%, var(--cafe-oscuro) 60%, #0D0602 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(45deg, rgba(196,98,45,0.04) 0, rgba(196,98,45,0.04) 1px, transparent 0, transparent 50%);
+      background-size: 24px 24px;
+    }
+    .cta-banner-inner { position: relative; max-width: 680px; margin: 0 auto; }
+    .cta-banner .section-label { color: var(--naranja-claro); }
+    .cta-banner .section-title { color: var(--blanco); }
+    .cta-banner .section-title em { color: var(--naranja-claro); }
+    .cta-banner p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem; color: rgba(232,213,176,0.72); margin: 16px 0 40px; }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-orange { display: inline-flex; align-items: center; gap: 10px; padding: 15px 36px; background: var(--naranja); color: var(--blanco); border-radius: 50px; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; border: 2px solid var(--naranja); transition: all var(--transicion); }
+    .btn-orange:hover { background: var(--naranja-vivo); border-color: var(--naranja-vivo); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(196,98,45,0.5); }
+    .btn-ghost-white { display: inline-flex; align-items: center; gap: 10px; padding: 15px 36px; background: transparent; color: rgba(255,255,255,0.85); border-radius: 50px; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.3); transition: all var(--transicion); }
+    .btn-ghost-white:hover { border-color: var(--naranja-claro); color: var(--naranja-claro); transform: translateY(-3px); }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer { background: var(--cafe-oscuro); padding: 70px 5% 30px; border-top: 1px solid rgba(196,98,45,0.15); }
+    .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 50px; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .footer-brand .logo-text strong { color: var(--beige); font-size: 1.2rem; }
+    .footer-brand .logo-text span { color: var(--naranja-claro); }
+    .footer-desc { font-size: 0.82rem; line-height: 1.8; color: rgba(232,213,176,0.52); margin-top: 16px; font-weight: 300; }
+    .footer-col h4 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--beige); margin-bottom: 20px; position: relative; padding-bottom: 12px; }
+    .footer-col h4::after { content: ''; position: absolute; bottom: 0; left: 0; width: 30px; height: 1px; background: var(--naranja); }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { font-size: 0.8rem; color: rgba(232,213,176,0.5); transition: color var(--transicion); display: flex; align-items: center; gap: 8px; }
+    .footer-col ul li a:hover { color: var(--naranja-claro); }
+    .footer-col ul li a::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--naranja); flex-shrink: 0; }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+    .footer-contact-icon { width: 34px; height: 34px; border-radius: 50%; background: rgba(196,98,45,0.15); border: 1px solid rgba(196,98,45,0.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .footer-contact-icon svg { width: 14px; height: 14px; fill: var(--naranja-claro); }
+    .footer-contact-item span { font-size: 0.78rem; color: rgba(232,213,176,0.55); line-height: 1.6; padding-top: 6px; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 0.72rem; color: rgba(232,213,176,0.28); letter-spacing: 0.05em; }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a { font-size: 0.72rem; color: rgba(232,213,176,0.28); transition: color var(--transicion); }
+    .footer-bottom-links a:hover { color: var(--naranja-claro); }
+
+    /* ============================================================
+       CURSOR PERSONALIZADO
+    ============================================================ */
+    html, body { cursor: url('cuchara.png') 16 16, auto !important; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .items-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+      .tequilas-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .bebidas-section-wrap { margin: 0 -5% 70px; padding: 70px 5%; }
+    }
+    @media (max-width: 480px) {
+      .items-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .tequilas-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .menu-body { padding: 60px 5% 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader-logo">
+      El Retiro
+      <span>Restaurant Bar Familiar</span>
+    </div>
+    <div class="loader-line"></div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-emblem">
+        <img src="logo.png" alt="El Retiro">
+      </div>
+      <div class="logo-text">
+        <strong>El Retiro</strong>
+        <span>Valle de Juárez, Jal.</span>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="menu.html">Menú</a>
+      <a href="ubicacion.html">Ubicación</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="contacto.html" class="btn-nav">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        Contáctanos
+      </a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Inicio</a>
+    <a href="menu.html">Menú</a>
+    <a href="ubicacion.html">Ubicación</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="contacto.html" class="btn-nav-mobile">Contáctanos</a>
+  </nav>
+
+  <!-- HERO MENÚ -->
+  <section class="menu-hero">
+    <div class="menu-hero-bg"></div>
+    <div class="menu-hero-pattern"></div>
+    <div class="menu-hero-overlay"></div>
+    <div class="menu-hero-content">
+      <span class="menu-hero-badge">✦ Valle de Juárez, Jalisco ✦</span>
+      <h1 class="menu-hero-title">Nuestro <em>Menú</em></h1>
+      <p class="menu-hero-sub">Sabores auténticos de la cocina mexicana jalisciense</p>
+    </div>
+  </section>
+
+    <!-- NAV MENÚ STICKY -->
+  <div class="menu-nav-wrap">
+    <div class="menu-nav" id="menuNav">
+      <button class="menu-nav-btn active" onclick="scrollToSection('camarones')">Camarones</button>
+      <button class="menu-nav-btn" onclick="scrollToSection('carnes')">Carnes</button>
+      <button class="menu-nav-btn" onclick="scrollToSection('aves')">Aves</button>
+      <button class="menu-nav-btn" onclick="scrollToSection('antojitos')">Antojitos</button>
+      <button class="menu-nav-btn" onclick="scrollToSection('tequilas')">Tequilas</button>
+      <button class="menu-nav-btn" onclick="scrollToSection('whiskies')">Whiskies</button>
+      <button class="menu-nav-btn" onclick="scrollToSection('licores')">Licores</button>
+      <button class="menu-nav-btn" onclick="scrollToSection('cocteles')">Cócteles</button>
+      <button class="menu-nav-btn" onclick="scrollToSection('aguas')">Aguas & Jugos</button>
+    </div>
+  </div>
+
+  <style>
+  /* CONTENEDOR */
+  .menu-nav-wrap{
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-bottom: 8px;
+
+    scroll-behavior: smooth;
+
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: rgb(184, 124, 12) black;
+  }
+
+  /* Chrome / Edge */
+  .menu-nav-wrap::-webkit-scrollbar{
+    height: 8px;
+  }
+
+  .menu-nav-wrap::-webkit-scrollbar-track{
+    background: black; /* Fondo negro */
+    border-radius: 10px;
+  }
+
+  .menu-nav-wrap::-webkit-scrollbar-thumb{
+    background: orange; /* Barra naranja */
+    border-radius: 10px;
+  }
+
+  .menu-nav-wrap::-webkit-scrollbar-thumb:hover{
+    background: #ffb347; /* Naranja claro al pasar mouse */
+  }
+
+  /* MENÚ */
+  .menu-nav{
+    display: inline-flex;
+    gap: 10px;
+    min-width: max-content;
+    padding: 5px;
+  }
+
+  /* BOTONES */
+  .menu-nav-btn{
+    border: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 15px;
+    transition: 0.3s;
+  }
+
+  .menu-nav-btn:hover{
+    transform: scale(1.05);
+  }
+
+  .menu-nav-btn.active{
+    font-weight: bold;
+  }
+  </style>
+
+  <!-- CUERPO DEL MENÚ -->
+  <main class="menu-body">
+
+    <!-- ============================================================
+         1. CAMARONES
+    ============================================================ -->
+    <section class="menu-section" id="camarones">
+      <div class="section-head reveal">
+        <span class="section-label">✦ Del Mar a tu Mesa</span>
+        <h2 class="section-title">Platillos de <em>Camarón</em></h2>
+        <div class="ornament">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line right"></div>
+        </div>
+      </div>
+      <div class="items-grid">
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Camarones a la Diabla</div>
+            <img src="Camarones a la diabla.jpeg" alt="Camarones a la Diabla" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Camarones a la Diabla</div>
+            <span class="item-card-tag">Camarones</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Camarones a la Mantequilla</div>
+            <img src="Camarones a la mantequilla.jpeg" alt="Camarones a la Mantequilla" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Camarones a la Mantequilla</div>
+            <span class="item-card-tag">Camarones</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Camarones Empanizados</div>
+            <img src="camarones empanizados.jpeg" alt="Camarones Empanizados" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Camarones Empanizados</div>
+            <span class="item-card-tag">Camarones</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Camarones al Mojo de Ajo</div>
+            <img src="Casmarones al mojo de ajo.jpeg" alt="Camarones al Mojo de Ajo" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Camarones al Mojo de Ajo</div>
+            <span class="item-card-tag">Camarones</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Cóctel de Camarón Grande</div>
+            <img src="Coctel de camaron grande.jpeg" alt="Cóctel de Camarón Grande" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Cóctel de Camarón Grande</div>
+            <span class="item-card-tag">Cóctel</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Cóctel de Camarón Mediano</div>
+            <img src="Coctel de camaron mediano.jpeg" alt="Cóctel de Camarón Mediano" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Cóctel de Camarón Mediano</div>
+            <span class="item-card-tag">Cóctel</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ============================================================
+         2. FILETES DE BASA
+    ============================================================ -->
+    <section class="menu-section" id="basa">
+      <div class="section-head reveal">
+        <span class="section-label">✦ Pescados</span>
+        <h2 class="section-title">Filetes de <em>Basa</em></h2>
+        <div class="ornament">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line right"></div>
+        </div>
+      </div>
+      <div class="items-grid">
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Filete Basa a la Diabla</div>
+            <img src="Filete basa a la diabla.jpeg" alt="Filete de Basa a la Diabla" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Filete de Basa a la Diabla</div>
+            <span class="item-card-tag">Pescado</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Filete Basa Empanizado</div>
+            <img src="Filete basa empanizado.jpeg" alt="Filete de Basa Empanizado" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Filete de Basa Empanizado</div>
+            <span class="item-card-tag">Pescado</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Filete Basa a la Mantequilla</div>
+            <img src="Filete basa Mantequilla.jpeg" alt="Filete de Basa a la Mantequilla" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Filete de Basa a la Mantequilla</div>
+            <span class="item-card-tag">Pescado</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Filetes al Mojo de Ajo</div>
+            <img src="Filetes al mojo de ajo.jpeg" alt="Filetes al Mojo de Ajo" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Filetes al Mojo de Ajo</div>
+            <span class="item-card-tag">Pescado</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ============================================================
+         3. CARNES
+    ============================================================ -->
+    <section class="menu-section" id="carnes">
+      <div class="section-head reveal">
+        <span class="section-label">✦ Cortes y Guisos</span>
+        <h2 class="section-title">Platillos de <em>Carne</em></h2>
+        <div class="ornament">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line right"></div>
+        </div>
+      </div>
+      <div class="items-grid">
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Carne a la Mexicana</div>
+            <img src="Carne a la mexicana.jpeg" alt="Carne a la Mexicana" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Carne a la Mexicana</div>
+            <span class="item-card-tag">Carnes</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Carne a la Tampiqueña</div>
+            <img src="Carne a la tampiquena.jpeg" alt="Carne a la Tampiqueña" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Carne a la Tampiqueña</div>
+            <span class="item-card-tag">Carnes</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Carne Asada</div>
+            <img src="Carne asada.jpeg" alt="Carne Asada" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Carne Asada</div>
+            <span class="item-card-tag">Carnes</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Milanesa de Res</div>
+            <img src="Milanesa de res.jpeg" alt="Milanesa de Res" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Milanesa de Res</div>
+            <span class="item-card-tag">Carnes</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ============================================================
+         4. AVES
+    ============================================================ -->
+    <section class="menu-section" id="aves">
+      <div class="section-head reveal">
+        <span class="section-label">✦ Especialidades de Pollo</span>
+        <h2 class="section-title">Platillos de <em>Pollo</em></h2>
+        <div class="ornament">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line right"></div>
+        </div>
+      </div>
+      <div class="items-grid">
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Pechuga a la Diabla</div>
+            <img src="Pechuga a la diabla.jpeg" alt="Pechuga a la Diabla" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Pechuga a la Diabla</div>
+            <span class="item-card-tag">Pollo</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Pechuga a la Mantequilla</div>
+            <img src="Pechuga a la mantequilla.jpeg" alt="Pechuga a la Mantequilla" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Pechuga a la Mantequilla</div>
+            <span class="item-card-tag">Pollo</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Pechuga a la Mexicana</div>
+            <img src="Pechuga a la mexicana.jpeg" alt="Pechuga a la Mexicana" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Pechuga a la Mexicana</div>
+            <span class="item-card-tag">Pollo</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Pechuga a las Brasas</div>
+            <img src="Pechuga a las brasas.jpeg" alt="Pechuga a las Brasas" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Pechuga a las Brasas</div>
+            <span class="item-card-tag">Pollo</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Pechuga al Mojo de Ajo</div>
+            <img src="Pechuga al mojo de ajo.jpeg" alt="Pechuga al Mojo de Ajo" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Pechuga al Mojo de Ajo</div>
+            <span class="item-card-tag">Pollo</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Milanesa de Pollo</div>
+            <img src="Milanesa de pollo.jpeg" alt="Milanesa de Pollo" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Milanesa de Pollo</div>
+            <span class="item-card-tag">Pollo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ============================================================
+         5. ANTOJITOS Y MÁS
+    ============================================================ -->
+    <section class="menu-section" id="antojitos">
+      <div class="section-head reveal">
+        <span class="section-label">✦ Cocina Mexicana Tradicional</span>
+        <h2 class="section-title">Antojitos y <em>Guisos</em></h2>
+        <div class="ornament">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line right"></div>
+        </div>
+      </div>
+      <div class="items-grid">
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Pozole</div>
+            <img src="Pozole.jpeg" alt="Pozole" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Pozole</div>
+            <span class="item-card-tag">Tradicional</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Enchiladas Rojas Dulces</div>
+            <img src="Enchilada rojas dulces.jpeg" alt="Enchiladas Rojas Dulces" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Enchiladas Rojas Dulces</div>
+            <span class="item-card-tag">Tradicional</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Sopes de Picadillo</div>
+            <img src="Sopes de picadillo.jpeg" alt="Sopes de Picadillo" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Sopes de Picadillo</div>
+            <span class="item-card-tag">Antojitos</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Tacos de Bistec</div>
+            <img src="Tacos de Bistec.jpeg" alt="Tacos de Bistec" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Tacos de Bistec</div>
+            <span class="item-card-tag">Tacos</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Tacos Dorados</div>
+            <img src="Tacos Dorados.jpeg" alt="Tacos Dorados" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Tacos Dorados</div>
+            <span class="item-card-tag">Tacos</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Quesadillas de Res</div>
+            <img src="Quesadillas de res.jpeg" alt="Quesadillas de Res" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Quesadillas de Res</div>
+            <span class="item-card-tag">Antojitos</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Tostada de Lomo</div>
+            <img src="Tostada de lomo.jpeg" alt="Tostada de Lomo" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Tostada de Lomo</div>
+            <span class="item-card-tag">Tostadas</span>
+          </div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Tostada de Pierna</div>
+            <img src="Tostada de pierna.jpeg" alt="Tostada de Pierna" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body">
+            <div class="item-card-name">Tostada de Pierna</div>
+            <span class="item-card-tag">Tostadas</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- /menu-body -->
+
+  <!-- ============================================================
+       TEQUILAS — SECCIÓN OSCURA
+  ============================================================ -->
+  <div class="bebidas-section-wrap">
+    <div style="max-width:1300px; margin:0 auto;">
+
+      <!-- TEQUILAS -->
+      <section class="menu-section" id="tequilas">
+        <div class="section-head reveal">
+          <span class="section-label">✦ Destilados de Agave</span>
+          <h2 class="section-title">Tequilas &amp; <em>Mezcal</em></h2>
+          <div class="ornament">
+            <div class="ornament-line"></div>
+            <div class="ornament-diamond"></div>
+            <div class="ornament-line right"></div>
+          </div>
+        </div>
+        <div class="tequilas-grid">
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="30 30 anejo.jpeg" alt="30-30 Añejo" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">30-30 Añejo</div><span class="tequila-type">Tequila · Añejo</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="30 30 blanco.jpeg" alt="30-30 Blanco" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">30-30 Blanco</div><span class="tequila-type">Tequila · Blanco</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="30 30 cristalino.jpeg" alt="30-30 Cristalino" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">30-30 Cristalino</div><span class="tequila-type">Tequila · Cristalino</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="30 30 reposado.jpeg" alt="30-30 Reposado" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">30-30 Reposado</div><span class="tequila-type">Tequila · Reposado</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="1800 anejo.jpeg" alt="1800 Añejo" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">1800 Añejo</div><span class="tequila-type">Tequila · Añejo</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Azteca de oro.jpeg" alt="Azteca de Oro" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Azteca de Oro</div><span class="tequila-type">Tequila</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Cazadores reposado.jpeg" alt="Cazadores Reposado" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Cazadores Reposado</div><span class="tequila-type">Tequila · Reposado</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="centenario anejo.jpeg" alt="Centenario Añejo" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Centenario Añejo</div><span class="tequila-type">Tequila · Añejo</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="centenario azul.jpeg" alt="Centenario Azul" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Centenario Azul</div><span class="tequila-type">Tequila · Blanco</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="centenario reposado.jpeg" alt="Centenario Reposado" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Centenario Reposado</div><span class="tequila-type">Tequila · Reposado</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Don julio reposado.jpeg" alt="Don Julio Reposado" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Don Julio Reposado</div><span class="tequila-type">Tequila · Reposado</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Herradura blanco.jpeg" alt="Herradura Blanco" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Herradura Blanco</div><span class="tequila-type">Tequila · Blanco</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Herradura reposado.jpeg" alt="Herradura Reposado" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Herradura Reposado</div><span class="tequila-type">Tequila · Reposado</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Pueblo viejo anejo.jpeg" alt="Pueblo Viejo Añejo" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Pueblo Viejo Añejo</div><span class="tequila-type">Tequila · Añejo</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="pueblo viejo reposado.jpeg" alt="Pueblo Viejo Reposado" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Pueblo Viejo Reposado</div><span class="tequila-type">Tequila · Reposado</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="San matias gran reserva.jpeg" alt="San Matías Gran Reserva" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">San Matías Gran Reserva</div><span class="tequila-type">Tequila · Añejo</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Tradicional.jpeg" alt="Tradicional" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Tradicional</div><span class="tequila-type">Tequila</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Mezcal el retiro.jpeg" alt="Mezcal El Retiro" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Mezcal El Retiro</div><span class="tequila-type">Mezcal · Artesanal</span></div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider" style="background: linear-gradient(90deg, transparent, rgba(196,98,45,0.3), transparent);">
+
+      <!-- WHISKIES -->
+      <section class="menu-section" id="whiskies">
+        <div class="section-head reveal">
+          <span class="section-label">✦ Escoceses y de Malta</span>
+          <h2 class="section-title">Whiskies &amp; <em>Blends</em></h2>
+          <div class="ornament">
+            <div class="ornament-line"></div>
+            <div class="ornament-diamond"></div>
+            <div class="ornament-line right"></div>
+          </div>
+        </div>
+        <div class="tequilas-grid">
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Black label.jpeg" alt="Black Label" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Johnnie Walker Black Label</div><span class="tequila-type">Whisky · Escocés</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Red label.jpeg" alt="Red Label" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Johnnie Walker Red Label</div><span class="tequila-type">Whisky · Escocés</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Buchanans 12.jpeg" alt="Buchanan's 12" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Buchanan's 12</div><span class="tequila-type">Whisky · Escocés</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Chivas regal.jpeg" alt="Chivas Regal" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Chivas Regal</div><span class="tequila-type">Whisky · Escocés</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Torres 10.jpeg" alt="Torres 10" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Torres 10</div><span class="tequila-type">Whisky · Español</span></div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider" style="background: linear-gradient(90deg, transparent, rgba(196,98,45,0.3), transparent);">
+
+      <!-- LICORES Y BRANDYS -->
+      <section class="menu-section" id="licores">
+        <div class="section-head reveal">
+          <span class="section-label">✦ Brandys, Vodkas y Más</span>
+          <h2 class="section-title">Licores &amp; <em>Brandys</em></h2>
+          <div class="ornament">
+            <div class="ornament-line"></div>
+            <div class="ornament-diamond"></div>
+            <div class="ornament-line right"></div>
+          </div>
+        </div>
+        <div class="tequilas-grid">
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Hennessy.jpeg" alt="Hennessy" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Hennessy</div><span class="tequila-type">Coñac</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Martell.jpeg" alt="Martell" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Martell</div><span class="tequila-type">Coñac</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Remy martin.jpeg" alt="Rémy Martin" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Rémy Martin</div><span class="tequila-type">Coñac</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="don pedro.jpeg" alt="Don Pedro" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Don Pedro</div><span class="tequila-type">Brandy</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Vodka absolut.jpeg" alt="Vodka Absolut" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Vodka Absolut</div><span class="tequila-type">Vodka</span></div>
+          </div>
+          <div class="tequila-card reveal">
+            <div class="tequila-img"><img src="Vodka oso negro.jpeg" alt="Vodka Oso Negro" onerror="this.style.display='none'"></div>
+            <div class="tequila-body"><div class="tequila-name">Vodka Oso Negro</div><span class="tequila-type">Vodka</span></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div><!-- /bebidas-section-wrap -->
+
+  <!-- ============================================================
+       CÓCTELES Y AGUAS
+  ============================================================ -->
+  <main class="menu-body" style="padding-top: 60px;">
+
+    <section class="menu-section" id="cocteles">
+      <div class="section-head reveal">
+        <span class="section-label">✦ Mezclas Especiales</span>
+        <h2 class="section-title">Cócteles &amp; <em>Bebidas</em></h2>
+        <div class="ornament">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line right"></div>
+        </div>
+      </div>
+      <div class="items-grid">
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Margarita</div>
+            <img src="Margarita.jpeg" alt="Margarita" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body"><div class="item-card-name">Margarita</div><span class="item-card-tag">Cóctel</span></div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Michelada</div>
+            <img src="Michelada.jpeg" alt="Michelada" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body"><div class="item-card-name">Michelada</div><span class="item-card-tag">Cóctel</span></div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Pantera Rosa</div>
+            <img src="Pantera rosa.jpeg" alt="Pantera Rosa" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body"><div class="item-card-name">Pantera Rosa</div><span class="item-card-tag">Cóctel</span></div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Vampiro</div>
+            <img src="Vampiro.jpeg" alt="Vampiro" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body"><div class="item-card-name">Vampiro</div><span class="item-card-tag">Cóctel</span></div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Ruso Blanco</div>
+            <img src="Ruso blanco.jpeg" alt="Ruso Blanco" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body"><div class="item-card-name">Ruso Blanco</div><span class="item-card-tag">Cóctel</span></div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Ruso Negro</div>
+            <img src="Ruso negro.jpeg" alt="Ruso Negro" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body"><div class="item-card-name">Ruso Negro</div><span class="item-card-tag">Cóctel</span></div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- AGUAS Y JUGOS -->
+    <section class="menu-section" id="aguas">
+      <div class="section-head reveal">
+        <span class="section-label">✦ Refrescantes y Naturales</span>
+        <h2 class="section-title">Aguas Frescas &amp; <em>Jugos</em></h2>
+        <div class="ornament">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line right"></div>
+        </div>
+      </div>
+      <div class="items-grid">
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Aguas Frescas</div>
+            <img src="Aguas frescas.jpeg" alt="Aguas Frescas" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body"><div class="item-card-name">Aguas Frescas</div><span class="item-card-tag">Bebidas</span></div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Limonada</div>
+            <img src="Limonada.jpeg" alt="Limonada" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body"><div class="item-card-name">Limonada</div><span class="item-card-tag">Bebidas</span></div>
+        </div>
+        <div class="item-card reveal">
+          <div class="item-card-img">
+            <div class="item-card-img-placeholder">Naranjada</div>
+            <img src="Naranjada.jpeg" alt="Naranjada" onerror="this.style.display='none'">
+          </div>
+          <div class="item-card-body"><div class="item-card-name">Naranjada</div><span class="item-card-tag">Bebidas</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="cta-banner-inner">
+      <span class="section-label reveal">✦ Visítanos</span>
+      <h2 class="section-title reveal">¿Listo para vivir<br>la <em>experiencia</em> El Retiro?</h2>
+      <p class="reveal">Te esperamos con los brazos abiertos y los sabores más auténticos de Jalisco.</p>
+      <div class="cta-btns reveal">
+        <a href="ubicacion.html" class="btn-orange">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Cómo Llegar
+        </a>
+        <a href="contacto.html" class="btn-ghost-white">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          Contáctanos
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="logo-emblem" style="border-color: rgba(196,98,45,0.5);">
+            <span class="logo-letters">ER</span>
+          </div>
+          <div class="logo-text">
+            <strong>El Retiro</strong>
+            <span>Restaurant Bar Familiar</span>
+          </div>
+        </div>
+        <p class="footer-desc">Las Originales Aguas de Lima y Cocina Mexicana. Un espacio donde la tradición y el sabor jalisciense se fusionan para crear momentos únicos en Valle de Juárez.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="menu.html">Nuestro Menú</a></li>
+          <li><a href="ubicacion.html">Cómo Llegar</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contáctanos</h4>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <span>Valle de Juárez, Jalisco<br>México</span>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          </div>
+          <span>+52 (382) 571-0218</span>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <span>Lun – Dom<br>10:00 am – 9:00 pm</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 El Retiro Restaurant Bar Familiar. Todos los derechos reservados.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Aviso de Privacidad</a>
+        <a href="#">Términos de Uso</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    /* LOADER */
+    window.addEventListener('load', () => {
+      setTimeout(() => { document.getElementById('loader').classList.add('hidden'); }, 1200);
+    });
+
+    /* HEADER SCROLL */
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* HAMBURGER */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    /* SCROLL REVEAL */
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.10, rootMargin: '0px 0px -30px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    /* SCROLL TO SECTION */
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const offset = 74 + 56; // header + menu-nav
+      const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+      /* actualizar botón activo */
+      document.querySelectorAll('.menu-nav-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    /* ACTUALIZAR NAV ACTIVO AL SCROLL */
+    const sections = ['camarones','basa','carnes','aves','antojitos','tequilas','whiskies','licores','cocteles','aguas'];
+    const navBtns = document.querySelectorAll('.menu-nav-btn');
+    const sectionMap = {
+      camarones: 0, basa: 0, carnes: 1, aves: 2, antojitos: 3,
+      tequilas: 4, whiskies: 5, licores: 6, cocteles: 7, aguas: 8
+    };
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (window.scrollY + 180 >= el.offsetTop) current = id;
+      });
+      if (current && sectionMap[current] !== undefined) {
+        navBtns.forEach((b, i) => b.classList.toggle('active', i === sectionMap[current]));
+      }
+    });
+  </script>
+
+</body>
+</html>

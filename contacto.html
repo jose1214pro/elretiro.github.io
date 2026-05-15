@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto | El Retiro</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --cafe-oscuro:#1E0F06;
+      --cafe-medio:#3B1F0C;
+      --naranja:#C4622D;
+      --naranja-claro:#E89560;
+      --crema:#FBF6EC;
+      --beige:#E8D5B0;
+      --blanco:#FFFFFF;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Montserrat',sans-serif;
+      background:var(--crema);
+      color:var(--cafe-oscuro);
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    /* HERO */
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      overflow:hidden;
+      background:
+      linear-gradient(
+      135deg,
+      #1E0F06 0%,
+      #3B1F0C 50%,
+      #5C3317 100%);
+    }
+
+    .hero::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:
+      repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.03) 0,
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 25px);
+    }
+
+    .contact-box{
+      position:relative;
+      z-index:2;
+      width:90%;
+      max-width:700px;
+      background:rgba(255,255,255,0.06);
+      backdrop-filter:blur(18px);
+      border:1px solid rgba(255,255,255,0.12);
+      border-radius:30px;
+      padding:60px 40px;
+      text-align:center;
+      box-shadow:0 25px 60px rgba(0,0,0,0.35);
+      animation:fadeUp 1s ease;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:8px 20px;
+      border-radius:50px;
+      border:1px solid rgba(232,149,96,0.4);
+      color:var(--naranja-claro);
+      font-size:0.75rem;
+      letter-spacing:0.25em;
+      text-transform:uppercase;
+      margin-bottom:25px;
+      font-weight:600;
+    }
+
+    h1{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.5rem,6vw,4.5rem);
+      color:var(--blanco);
+      line-height:1.1;
+      margin-bottom:18px;
+    }
+
+    h1 em{
+      color:var(--naranja-claro);
+      font-style:italic;
+    }
+
+    .subtitle{
+      color:rgba(255,255,255,0.7);
+      font-size:1.1rem;
+      line-height:1.8;
+      margin-bottom:40px;
+    }
+
+    .phone-card{
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(232,149,96,0.2);
+      border-radius:24px;
+      padding:35px 20px;
+      margin-bottom:35px;
+    }
+
+    .phone-label{
+      color:var(--beige);
+      font-size:0.8rem;
+      letter-spacing:0.2em;
+      text-transform:uppercase;
+      margin-bottom:14px;
+    }
+
+    .phone-number{
+      font-size:clamp(1.8rem,5vw,3rem);
+      font-weight:700;
+      color:var(--blanco);
+      letter-spacing:0.05em;
+    }
+
+    .buttons{
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:16px 34px;
+      border-radius:50px;
+      font-size:0.82rem;
+      font-weight:700;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      transition:0.4s;
+    }
+
+    .btn-call{
+      background:var(--naranja);
+      color:white;
+      border:2px solid var(--naranja);
+    }
+
+    .btn-call:hover{
+      transform:translateY(-4px);
+      background:#d9752e;
+      box-shadow:0 12px 30px rgba(196,98,45,0.45);
+    }
+
+    .btn-whatsapp{
+      background:transparent;
+      color:white;
+      border:2px solid rgba(255,255,255,0.2);
+    }
+
+    .btn-whatsapp:hover{
+      border-color:#25D366;
+      color:#25D366;
+      transform:translateY(-4px);
+    }
+
+    .footer-text{
+      margin-top:35px;
+      color:rgba(255,255,255,0.45);
+      font-size:0.9rem;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @media(max-width:768px){
+
+      .contact-box{
+        padding:45px 24px;
+      }
+
+      .phone-number{
+        font-size:2rem;
+      }
+
+      .buttons{
+        flex-direction:column;
+      }
+
+      .btn{
+        width:100%;
+      }
+    }
+
+    .btn-back{
+  background:transparent;
+  color:var(--beige);
+  border:2px solid rgba(232,213,176,0.25);
+}
+
+.btn-back:hover{
+  border-color:var(--naranja-claro);
+  color:var(--naranja-claro);
+  transform:translateY(-4px);
+}
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+
+    <div class="contact-box">
+
+      <div class="badge">
+        ✦ Contacto ✦
+      </div>
+
+      <h1>
+        El <em>Retiro</em>
+      </h1>
+
+      <p class="subtitle">
+        Restaurant Bar Familiar<br>
+        Valle de Juárez, Jalisco
+      </p>
+
+      <div class="phone-card">
+
+        <div class="phone-label">
+          Número Telefónico
+        </div>
+
+        <div class="phone-number">
+          +52 (382) 571-0218
+        </div>
+
+      </div>
+
+      <div class="buttons">
+
+        <!-- LLAMAR -->
+        <a href="tel:+523825710218" class="btn btn-call">
+          📞 Llamar Ahora
+        </a>
+
+        <!-- WHATSAPP -->
+        <a href="https://wa.me/523825710218" target="_blank" class="btn btn-whatsapp">
+          💬 WhatsApp
+        </a>
+
+        <a href="index.html" class="btn btn-back">
+        ← Regresar al Inicio
+        </a>
+
+      </div>
+
+      <div class="footer-text">
+        Te esperamos con los mejores sabores de Jalisco.
+      </div>
+
+    </div>
+
+  </section>
+
+</body>
+</html>
