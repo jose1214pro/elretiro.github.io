@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Camarón Run – El Retiro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cafe-oscuro:#1E0F06;--cafe-medio:#3B1F0C;--cafe-madera:#5C3317;
+      --cafe-suave:#8B5E3C;--naranja:#C4622D;--naranja-vivo:#D9752E;
+      --naranja-claro:#E89560;--beige:#E8D5B0;--beige-claro:#F5EDD8;
+      --crema:#FBF6EC;--blanco:#FFFFFF;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Montserrat',sans-serif;background:#0a1628;color:#fff;overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+    ul{list-style:none}
+
+    html, body {
+      cursor: url('cuchara.png') 16 16, auto !important;
+    }
+
+    a, button {
+      cursor: url('cuchara.png') 16 16, pointer !important;
+    }
+
+    canvas {
+      cursor: url('cuchara.png') 16 16, crosshair !important;
+    }
+
+    /* ── HEADER ── */
+    .header{
+      position:fixed;top:0;left:0;right:0;z-index:1000;
+      padding:0 5%;height:70px;
+      display:flex;align-items:center;justify-content:space-between;
+      background:rgba(30,15,6,0.92);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(232,149,96,0.2);
+    }
+    .nav-logo{display:flex;align-items:center;gap:12px}
+    .logo-emblem{
+      width:42px;height:42px;border-radius:50%;
+      border:2px solid var(--naranja);
+      background:var(--cafe-medio);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Playfair Display',serif;
+      font-size:1rem;font-weight:700;color:var(--naranja-claro);
+      letter-spacing:0.04em;
+    }
+    .logo-text strong{
+      display:block;font-family:'Playfair Display',serif;
+      color:#fff;font-size:1rem;font-weight:700;letter-spacing:0.08em;
+    }
+    .logo-text span{
+      font-family:'Cormorant Garamond',serif;font-style:italic;
+      font-size:0.68rem;color:var(--naranja-claro);letter-spacing:0.15em;
+    }
+    .nav-links{display:flex;align-items:center;gap:32px}
+    .nav-links a{
+      font-size:0.75rem;font-weight:500;letter-spacing:0.14em;
+      text-transform:uppercase;color:rgba(255,255,255,0.8);
+      transition:color .3s;position:relative;
+    }
+    .nav-links a::after{
+      content:'';position:absolute;bottom:-4px;left:0;
+      width:0;height:1.5px;background:var(--naranja);transition:width .3s;
+    }
+    .nav-links a:hover{color:var(--naranja-claro)}
+    .nav-links a:hover::after{width:100%}
+    .btn-nav{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:8px 20px;background:var(--naranja);color:#fff!important;
+      border-radius:50px;font-size:0.72rem!important;font-weight:600!important;
+      letter-spacing:0.12em!important;text-transform:uppercase!important;
+      transition:all .3s;
+    }
+    .btn-nav::after{display:none!important}
+    .btn-nav:hover{background:var(--naranja-vivo);transform:translateY(-2px);box-shadow:0 6px 20px rgba(196,98,45,.5)}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
+    .hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+    .hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-menu{
+      display:none;position:fixed;top:70px;left:0;right:0;
+      background:rgba(20,10,4,0.97);backdrop-filter:blur(20px);
+      padding:32px 5% 40px;flex-direction:column;gap:24px;z-index:999;
+    }
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{color:rgba(255,255,255,.88);font-size:1rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.07);padding-bottom:16px}
+    .mobile-menu .btn-nav-mob{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:13px 28px;background:var(--naranja);color:#fff;
+      border-radius:50px;font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;
+    }
+
+    /* ── GAME SECTION ── */
+    .game-section{
+      min-height:100vh;padding-top:70px;
+      background:linear-gradient(180deg,#0a1628 0%,#0d1f3c 40%,#0a2840 100%);
+      position:relative;display:flex;flex-direction:column;align-items:center;
+    }
+    .game-hero{
+      text-align:center;padding:40px 20px 20px;
+    }
+    .game-badge{
+      display:inline-block;font-size:0.65rem;font-weight:700;letter-spacing:.35em;
+      text-transform:uppercase;color:var(--naranja-claro);
+      border:1px solid rgba(232,149,96,.4);padding:6px 18px;border-radius:50px;
+      margin-bottom:16px;
+    }
+    .game-title{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:#fff;
+      line-height:1.1;letter-spacing:.02em;margin-bottom:8px;
+    }
+    .game-title em{font-style:italic;color:var(--naranja-claro)}
+    .game-subtitle{
+      font-family:'Cormorant Garamond',serif;font-style:italic;
+      font-size:1.1rem;color:rgba(232,213,176,.7);letter-spacing:.04em;
+    }
+
+    /* ── CANVAS CONTAINER ── */
+    .canvas-wrap{
+      position:relative;width:min(780px,96vw);
+      margin:20px auto;
+      border-radius:20px;overflow:hidden;
+      box-shadow:0 0 0 2px rgba(232,149,96,.25),0 20px 80px rgba(0,0,0,.6);
+    }
+    canvas{display:block;width:100%;background:#061122}
+
+    /* ── UI OVERLAY ── */
+    .ui-bar{
+      display:flex;align-items:center;justify-content:space-between;
+      width:min(780px,96vw);margin:0 auto 8px;padding:0 4px;
+    }
+    .score-box,.lives-box,.level-box{
+      background:rgba(30,15,6,.7);border:1px solid rgba(232,149,96,.25);
+      border-radius:12px;padding:8px 18px;display:flex;flex-direction:column;align-items:center;
+    }
+    .score-label{font-size:0.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--naranja-claro);margin-bottom:2px}
+    .score-val{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#fff}
+    .lives-icons{font-size:1.2rem;letter-spacing:4px}
+
+    /* ── CONTROLS HINT ── */
+    .controls-hint{
+      display:flex;gap:16px;justify-content:center;
+      margin:6px auto 24px;font-size:.7rem;color:rgba(255,255,255,.45);
+      letter-spacing:.08em;
+    }
+    .controls-hint span{display:flex;align-items:center;gap:6px}
+    .key-badge{
+      background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+      border-radius:6px;padding:2px 8px;font-size:.65rem;font-weight:600;
+    }
+
+    /* ── OVERLAY SCREENS ── */
+    .overlay{
+      position:absolute;inset:0;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;text-align:center;padding:30px;
+      background:rgba(6,17,34,.88);backdrop-filter:blur(6px);
+      z-index:10;transition:opacity .4s;
+    }
+    .overlay.hidden{display:none}
+    .overlay-title{
+      font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3rem);
+      font-weight:900;color:#fff;margin-bottom:12px;
+    }
+    .overlay-title em{font-style:italic;color:var(--naranja-claro)}
+    .overlay-sub{
+      font-family:'Cormorant Garamond',serif;font-style:italic;
+      font-size:1.1rem;color:rgba(232,213,176,.7);margin-bottom:28px;
+    }
+    .btn-game{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:14px 36px;background:var(--naranja);color:#fff;
+      border-radius:50px;font-family:'Montserrat',sans-serif;
+      font-size:.82rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+      border:2px solid var(--naranja);cursor:pointer;
+      transition:all .3s;margin:6px;
+    }
+    .btn-game:hover{background:var(--naranja-vivo);transform:translateY(-3px);box-shadow:0 10px 30px rgba(196,98,45,.5)}
+    .btn-game.secondary{background:transparent;border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.85)}
+    .btn-game.secondary:hover{border-color:var(--naranja-claro);color:var(--naranja-claro)}
+    .final-score{
+      font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;
+      color:var(--naranja-claro);margin:8px 0;
+    }
+    .high-score-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+
+    /* ── FOOTER ── */
+    .footer{
+      background:var(--cafe-oscuro);padding:50px 5% 24px;
+      border-top:1px solid rgba(196,98,45,.15);
+    }
+    .footer-top{
+      display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;
+      padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.07);
+      max-width:1200px;margin:0 auto;
+    }
+    .footer-brand .logo-text strong{color:var(--beige);font-size:1.1rem}
+    .footer-brand .logo-text span{color:var(--naranja-claro)}
+    .footer-desc{font-size:.8rem;line-height:1.8;color:rgba(232,213,176,.5);margin-top:14px;font-weight:300}
+    .footer-col h4{
+      font-family:'Playfair Display',serif;font-size:.95rem;font-weight:600;
+      color:var(--beige);margin-bottom:18px;padding-bottom:10px;position:relative;
+    }
+    .footer-col h4::after{content:'';position:absolute;bottom:0;left:0;width:28px;height:1px;background:var(--naranja)}
+    .footer-col ul li{margin-bottom:9px}
+    .footer-col ul li a{
+      font-size:.78rem;color:rgba(232,213,176,.48);transition:color .3s;
+      display:flex;align-items:center;gap:7px;
+    }
+    .footer-col ul li a:hover{color:var(--naranja-claro)}
+    .footer-col ul li a::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--naranja);flex-shrink:0}
+    .footer-contact-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px}
+    .footer-contact-icon{
+      width:32px;height:32px;border-radius:50%;
+      background:rgba(196,98,45,.13);border:1px solid rgba(196,98,45,.22);
+      display:flex;align-items:center;justify-content:center;flex-shrink:0;
+      font-size:.85rem;color:var(--naranja-claro);
+    }
+    .footer-contact-item span{font-size:.76rem;color:rgba(232,213,176,.52);line-height:1.6;padding-top:5px}
+    .footer-bottom{
+      display:flex;align-items:center;justify-content:space-between;
+      padding-top:24px;flex-wrap:wrap;gap:10px;max-width:1200px;margin:0 auto;
+    }
+    .footer-bottom p{font-size:.7rem;color:rgba(232,213,176,.25);letter-spacing:.05em}
+    .footer-bottom-links{display:flex;gap:18px}
+    .footer-bottom-links a{font-size:.7rem;color:rgba(232,213,176,.25);transition:color .3s}
+    .footer-bottom-links a:hover{color:var(--naranja-claro)}
+
+    @media(max-width:900px){
+      .footer-top{grid-template-columns:1fr 1fr}
+      .nav-links{display:none}
+      .hamburger{display:flex}
+    }
+    @media(max-width:580px){
+      .footer-top{grid-template-columns:1fr}
+      .controls-hint{flex-wrap:wrap}
+    }
+
+    .logo-emblem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-emblem">
+      <img src="logo.png" alt="El Retiro">
+    </div>
+    <div class="logo-text">
+      <strong>El Retiro</strong>
+      <span>Valle de Juárez, Jal.</span>
+    </div>
+  </a>
+  <nav class="nav-links">
+    <a href="index.html">Inicio</a>
+    <a href="menu.html">Menú</a>
+    <a href="ubicacion.html">Ubicación</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="elretiro.pdf" target="_blank" class="btn-nav">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2"/></svg>
+      Ver Menú
+    </a>
+  </nav>
+  <button class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Inicio</a>
+  <a href="menu.html">Menú</a>
+  <a href="ubicacion.html">Ubicación</a>
+  <a href="contacto.html">Contacto</a>
+  <a href="elretiro.pdf" target="_blank" class="btn-nav-mob">Ver Menú Completo</a>
+</nav>
+
+<!-- GAME SECTION -->
+<section class="game-section">
+  <div class="game-hero">
+    <span class="game-badge">✦ El Retiro Arcade ✦</span>
+    <h1 class="game-title">Camarón <em>Run</em></h1>
+    <p class="game-subtitle">Esquiva los obstáculos y sobrevive en las profundidades</p>
+  </div>
+
+  <div class="ui-bar">
+    <div class="score-box">
+      <span class="score-label">Puntos</span>
+      <span class="score-val" id="scoreDisplay">0</span>
+    </div>
+    <div class="level-box">
+      <span class="score-label">Nivel</span>
+      <span class="score-val" id="levelDisplay">1</span>
+    </div>
+    <div class="lives-box">
+      <span class="score-label">Vidas</span>
+      <span class="lives-icons" id="livesDisplay">🦐🦐🦐</span>
+    </div>
+  </div>
+
+  <div class="canvas-wrap">
+    <canvas id="gameCanvas" width="780" height="480"></canvas>
+    <div class="overlay" id="startScreen">
+      <div class="overlay-title">🦐 Camarón <em>Run</em></div>
+      <div class="overlay-sub">Esquiva los obstáculos del mar y consigue la mejor puntuación</div>
+      <button class="btn-game" id="startBtn">▶ ¡Jugar Ahora!</button>
+      <a href="menu.html" class="btn-game secondary">Ver Menú</a>
+    </div>
+    <div class="overlay hidden" id="gameOverScreen">
+      <div class="overlay-title">¡Camarón <em>Caído</em>!</div>
+      <div class="final-score" id="finalScore">0</div>
+      <div class="high-score-label" id="highScoreLabel">Récord: 0</div>
+      <div class="overlay-sub" style="margin-top:10px">¿Te animas a volver a intentarlo?</div>
+      <button class="btn-game" id="restartBtn">↺ Jugar de Nuevo</button>
+      <a href="menu.html" class="btn-game secondary">Ver Menú</a>
+    </div>
+    <div class="overlay hidden" id="pauseScreen">
+      <div class="overlay-title">En <em>Pausa</em></div>
+      <div class="overlay-sub">Toma un descanso... o un taco 🌮</div>
+      <button class="btn-game" id="resumeBtn">▶ Continuar</button>
+    </div>
+  </div>
+
+  <div class="controls-hint">
+    <span><span class="key-badge">↑ ↓</span> Mover</span>
+    <span><span class="key-badge">← →</span> Izq / Der</span>
+    <span><span class="key-badge">P</span> Pausa</span>
+    <span>📱 Toca la pantalla en móvil</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-logo">
+        <div class="logo-emblem" style="border-color:rgba(196,98,45,.5)">ER</div>
+        <div class="logo-text">
+          <strong>El Retiro</strong>
+          <span>Restaurant Bar Familiar</span>
+        </div>
+      </div>
+      <p class="footer-desc">
+        Las Originales Aguas de Lima y Cocina Mexicana. Un espacio donde la tradición y el sabor jalisciense se fusionan en Valle de Juárez.
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="menu.html">Nuestro Menú</a></li>
+        <li><a href="ubicacion.html">Cómo Llegar</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contáctanos</h4>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon">📍</div>
+        <span>Valle de Juárez, Jalisco<br>México</span>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon">📞</div>
+        <span>+52 (382) 571-0218</span>
+      </div>
+      <div class="footer-contact-item">
+        <div class="footer-contact-icon">🕐</div>
+        <span>Lun – Dom<br>10:00 am – 9:00 pm</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 El Retiro Restaurant Bar Familiar. Todos los derechos reservados.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Aviso de Privacidad</a>
+      <a href="#">Términos de Uso</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ================================================================
+   CAMARÓN RUN — ENGINE COMPLETO
+================================================================ */
+
+const canvas = document.getElementById('gameCanvas');
+const ctx    = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+
+/* ---- STATE ---- */
+let state = 'start'; // start | playing | paused | gameover
+let score = 0, hiScore = 0, lives = 3, level = 1;
+let frame = 0, animId;
+let particles = [], bubbles = [], obstacles = [], corals = [], coins = [];
+let flashTimer = 0, levelUpTimer = 0;
+
+/* ---- SHRIMP ---- */
+const shrimp = {
+  x:140, y:H/2, w:70, h:44,
+  vy:0, vx:0, ax:0, ay:0,
+  speed:3.8, angle:0,
+  invincible:0,
+  trail:[]
+};
+
+/* ---- INPUT ---- */
+const keys = {};
+let touchStart = null;
+
+/* ---- COLORS ---- */
+const WATER_TOP   = '#061a30';
+const WATER_MID   = '#082240';
+const WATER_BOT   = '#041520';
+const CORAL_COLS  = ['#e05c2a','#c73060','#2a9d8f','#e76f51','#f4a261'];
+const COIN_COL    = '#f4c35a';
+
+/* ================================================================
+   DRAW HELPERS
+================================================================ */
+
+function drawOceanBG(){
+  // Deep gradient
+  let grad = ctx.createLinearGradient(0,0,0,H);
+  grad.addColorStop(0,'#071c33');
+  grad.addColorStop(0.5,'#09274a');
+  grad.addColorStop(1,'#041a2e');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0,0,W,H);
+
+  // Caustics (light rays)
+  ctx.save();
+  ctx.globalAlpha = 0.03 + 0.01*Math.sin(frame*0.015);
+  for(let i=0;i<8;i++){
+    let rx = (i*120 + frame*0.3) % (W+200) - 100;
+    let rg = ctx.createLinearGradient(rx,0,rx+80,H);
+    rg.addColorStop(0,'transparent');
+    rg.addColorStop(0.4,'#4fc3f7');
+    rg.addColorStop(1,'transparent');
+    ctx.fillStyle = rg;
+    ctx.beginPath();
+    ctx.moveTo(rx,0);
+    ctx.lineTo(rx+80,0);
+    ctx.lineTo(rx+40,H);
+    ctx.closePath();
+    ctx.fill();
+  }
+  ctx.restore();
+
+  // Wavy layers
+  for(let layer=0;layer<3;layer++){
+    let amp = 10+layer*8, freq = 0.008-layer*0.002;
+    let speed = 0.4+layer*0.2, alpha = 0.04-layer*0.01;
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = '#5bbcff';
+    ctx.beginPath();
+    ctx.moveTo(0,H);
+    for(let x=0;x<=W;x+=4){
+      let y = (layer+1)*(H/4) + amp*Math.sin(x*freq + frame*speed);
+      ctx.lineTo(x,y);
+    }
+    ctx.lineTo(W,H);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // Sand bottom
+  let sandG = ctx.createLinearGradient(0,H-50,0,H);
+  sandG.addColorStop(0,'rgba(180,130,60,0)');
+  sandG.addColorStop(1,'rgba(150,100,40,0.35)');
+  ctx.fillStyle = sandG;
+  ctx.fillRect(0,H-50,W,50);
+}
+
+function drawBubble(b){
+  ctx.save();
+  ctx.globalAlpha = b.a;
+  ctx.strokeStyle = 'rgba(150,220,255,0.8)';
+  ctx.lineWidth = 1.2;
+  ctx.beginPath();
+  ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
+  ctx.stroke();
+  // shine
+  ctx.fillStyle = 'rgba(255,255,255,0.3)';
+  ctx.beginPath();
+  ctx.arc(b.x-b.r*0.3, b.y-b.r*0.3, b.r*0.3, 0, Math.PI*2);
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawCoral(c){
+  ctx.save();
+  ctx.fillStyle = c.col;
+  ctx.globalAlpha = 0.85;
+  // Simple coral shape: stacked bumps
+  for(let i=0;i<c.stems;i++){
+    let sx = c.x + i*(c.w/c.stems) - c.w/2;
+    let sh = c.h * (0.5 + 0.5*Math.sin(i*1.3));
+    ctx.beginPath();
+    ctx.moveTo(sx + c.w/(c.stems*2), H);
+    ctx.lineTo(sx + c.w/(c.stems*2), H - sh);
+    ctx.arc(sx + c.w/(c.stems*2), H-sh, c.w/(c.stems*2), Math.PI, 0);
+    ctx.lineTo(sx + c.w/c.stems, H);
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+function drawObstacle(o){
+  ctx.save();
+  ctx.translate(o.x + o.w/2, o.y + o.h/2);
+  ctx.rotate(o.angle || 0);
+
+  if(o.type === 'jellyfish'){
+    // Cap
+    let jg = ctx.createRadialGradient(0,-o.h*0.1,0,0,-o.h*0.1,o.w/2);
+    jg.addColorStop(0,'rgba(255,100,200,0.9)');
+    jg.addColorStop(1,'rgba(180,40,180,0.5)');
+    ctx.fillStyle = jg;
+    ctx.beginPath();
+    ctx.ellipse(0,-o.h*0.1,o.w/2,o.h*0.45,0,Math.PI,0);
+    ctx.fill();
+    // Tentacles
+    ctx.strokeStyle = 'rgba(255,120,200,0.6)';
+    ctx.lineWidth = 1.5;
+    for(let t=-3;t<=3;t++){
+      let tx = t*(o.w*0.13);
+      let wobble = Math.sin(frame*0.08 + t) * 8;
+      ctx.beginPath();
+      ctx.moveTo(tx, o.h*0.3);
+      ctx.quadraticCurveTo(tx+wobble, o.h*0.6, tx, o.h*0.9);
+      ctx.stroke();
+    }
+    // Glow
+    ctx.save();
+    ctx.globalAlpha=0.18;
+    ctx.fillStyle='#ff60cc';
+    ctx.beginPath();
+    ctx.ellipse(0,0,o.w*0.7,o.h*0.7,0,0,Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+
+  } else if(o.type === 'rock'){
+    ctx.fillStyle = '#2a3a4a';
+    ctx.beginPath();
+    ctx.moveTo(-o.w/2, o.h/2);
+    for(let p of o.pts) ctx.lineTo(p[0], p[1]);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = '#3a4f65';
+    ctx.beginPath();
+    ctx.moveTo(-o.w/2+4, o.h/2-6);
+    for(let p of o.pts.slice(0,3)) ctx.lineTo(p[0]+4, p[1]-4);
+    ctx.closePath();
+    ctx.fill();
+
+  } else if(o.type === 'fish'){
+    // Enemy fish
+    let dir = o.vx > 0 ? 1 : -1;
+    ctx.scale(dir, 1);
+    ctx.fillStyle = '#e05c1a';
+    ctx.beginPath();
+    ctx.ellipse(0,0,o.w*0.45,o.h*0.28,0,0,Math.PI*2);
+    ctx.fill();
+    // Tail
+    ctx.fillStyle = '#c04a10';
+    ctx.beginPath();
+    ctx.moveTo(o.w*0.35,0);
+    ctx.lineTo(o.w*0.55,-o.h*0.25);
+    ctx.lineTo(o.w*0.55, o.h*0.25);
+    ctx.closePath();
+    ctx.fill();
+    // Eye
+    ctx.fillStyle='#fff';
+    ctx.beginPath();ctx.arc(-o.w*0.22,-o.h*0.07,4,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#111';
+    ctx.beginPath();ctx.arc(-o.w*0.22,-o.h*0.07,2,0,Math.PI*2);ctx.fill();
+    // Fins
+    ctx.fillStyle='rgba(255,120,40,0.7)';
+    ctx.beginPath();ctx.moveTo(-o.w*0.05,-o.h*0.28);ctx.lineTo(o.w*0.12,-o.h*0.5);ctx.lineTo(o.w*0.2,-o.h*0.28);ctx.closePath();ctx.fill();
+
+  } else if(o.type === 'mine'){
+    ctx.fillStyle = '#1a1a2e';
+    ctx.beginPath();ctx.arc(0,0,o.w/2,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle = '#ff3030';
+    ctx.beginPath();ctx.arc(0,0,o.w/2-4,0,Math.PI*2);
+    ctx.globalAlpha = 0.4 + 0.3*Math.sin(frame*0.1);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle='#ff6060';ctx.lineWidth=2;
+    for(let s=0;s<8;s++){
+      let a=s*(Math.PI/4);
+      ctx.beginPath();
+      ctx.moveTo(Math.cos(a)*o.w/2,Math.sin(a)*o.w/2);
+      ctx.lineTo(Math.cos(a)*(o.w/2+8),Math.sin(a)*(o.w/2+8));
+      ctx.stroke();
+    }
+  }
+  ctx.restore();
+}
+
+function drawCoin(c){
+  ctx.save();
+  ctx.translate(c.x,c.y);
+  ctx.rotate(c.rot);
+  let cg = ctx.createRadialGradient(0,0,0,0,0,c.r);
+  cg.addColorStop(0,'#fde68a');
+  cg.addColorStop(1,'#d97706');
+  ctx.fillStyle = cg;
+  ctx.beginPath();ctx.arc(0,0,c.r,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle='rgba(255,220,80,0.5)';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.arc(0,0,c.r-2,0,Math.PI*2);ctx.stroke();
+  // $ sign (limón symbol)
+  ctx.fillStyle='rgba(120,60,0,0.8)';
+  ctx.font=`bold ${c.r*1}px Montserrat`;
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText('🍋',0,1);
+  ctx.restore();
+}
+
+function drawParticle(p){
+  ctx.save();
+  ctx.globalAlpha = p.life/p.maxLife;
+  ctx.fillStyle = p.col;
+  ctx.shadowColor = p.col;
+  ctx.shadowBlur = 8;
+  ctx.beginPath();ctx.arc(p.x,p.y,p.r*(p.life/p.maxLife),0,Math.PI*2);ctx.fill();
+  ctx.restore();
+}
+
+function drawShrimp(){
+  let s = shrimp;
+  ctx.save();
+  ctx.translate(s.x + s.w/2, s.y + s.h/2);
+  // tilt based on velocity
+  let tilt = Math.atan2(s.vy, 4) * 0.5;
+  ctx.rotate(tilt);
+
+  // invincibility flash
+  if(s.invincible > 0 && Math.floor(frame/4)%2===0){
+    ctx.globalAlpha = 0.4;
+  }
+
+  // TRAIL
+  s.trail.forEach((t,i)=>{
+    let a = (i/s.trail.length)*0.25;
+    ctx.save();
+    ctx.globalAlpha = a;
+    ctx.fillStyle='rgba(255,150,80,0.6)';
+    ctx.beginPath();
+    ctx.ellipse(t.x - s.x - s.w/2, t.y - s.y - s.h/2, 8*(i/s.trail.length), 5*(i/s.trail.length), 0,0,Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+  });
+
+  // BODY (elongated oval)
+  let bgrad = ctx.createLinearGradient(-s.w/2,-s.h/2,s.w/2,s.h/2);
+  bgrad.addColorStop(0,'#f97316');
+  bgrad.addColorStop(0.4,'#fb923c');
+  bgrad.addColorStop(1,'#c2410c');
+  ctx.fillStyle = bgrad;
+  ctx.beginPath();
+  ctx.ellipse(-4, 0, s.w*0.42, s.h*0.32, 0, 0, Math.PI*2);
+  ctx.fill();
+
+  // SEGMENTS (camarón detail)
+  ctx.strokeStyle='rgba(180,60,10,0.5)';
+  ctx.lineWidth=1.2;
+  for(let i=1;i<5;i++){
+    let sx = -s.w*0.42 + i*(s.w*0.84/5);
+    ctx.beginPath();
+    ctx.ellipse(sx, 0, 3, s.h*0.28, 0, 0, Math.PI*2);
+    ctx.stroke();
+  }
+
+  // TAIL (fan shape)
+  ctx.fillStyle='#ea6c0a';
+  for(let t=-2;t<=2;t++){
+    ctx.save();
+    ctx.rotate(t*0.2);
+    ctx.beginPath();
+    ctx.moveTo(s.w*0.42, 0);
+    ctx.lineTo(s.w*0.62, -s.h*0.18*Math.abs(t));
+    ctx.lineTo(s.w*0.62,  s.h*0.18*Math.abs(t));
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // HEAD
+  let hgrad = ctx.createRadialGradient(-s.w*0.36,-s.h*0.05,0,-s.w*0.36,-s.h*0.05,s.h*0.3);
+  hgrad.addColorStop(0,'#fdba74');
+  hgrad.addColorStop(1,'#f97316');
+  ctx.fillStyle=hgrad;
+  ctx.beginPath();
+  ctx.ellipse(-s.w*0.38, 0, s.h*0.28, s.h*0.28, 0, 0, Math.PI*2);
+  ctx.fill();
+
+  // EYE
+  ctx.fillStyle='#1a0a00';
+  ctx.beginPath();ctx.arc(-s.w*0.44,-s.h*0.12,5,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#fff';
+  ctx.beginPath();ctx.arc(-s.w*0.44-1.5,-s.h*0.14,2,0,Math.PI*2);ctx.fill();
+
+  // ANTENNAE
+  ctx.strokeStyle='rgba(255,160,80,0.8)';
+  ctx.lineWidth=1.2;
+  ctx.beginPath();
+  ctx.moveTo(-s.w*0.5,-s.h*0.1);
+  ctx.quadraticCurveTo(-s.w*0.65,-s.h*0.5,-s.w*0.55+Math.sin(frame*.05)*4,-s.h*0.7);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(-s.w*0.5,-s.h*0.05);
+  ctx.quadraticCurveTo(-s.w*0.72,-s.h*0.35,-s.w*0.68+Math.sin(frame*.07)*4,-s.h*0.55);
+  ctx.stroke();
+
+  // LEGS (swimmerets) — animated
+  ctx.strokeStyle='rgba(255,140,60,0.6)';ctx.lineWidth=1;
+  for(let l=0;l<5;l++){
+    let lx = -s.w*0.3 + l*(s.w*0.7/5);
+    let wiggle = Math.sin(frame*0.15+l)*6;
+    ctx.beginPath();
+    ctx.moveTo(lx, s.h*0.2);
+    ctx.lineTo(lx+wiggle, s.h*0.46);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(lx, -s.h*0.2);
+    ctx.lineTo(lx-wiggle, -s.h*0.46);
+    ctx.stroke();
+  }
+
+  ctx.restore();
+}
+
+/* ================================================================
+   GAME LOGIC
+================================================================ */
+
+function spawnBubbles(){
+  if(frame%12===0){
+    bubbles.push({
+      x: Math.random()*W,
+      y: H + 10,
+      r: 2 + Math.random()*10,
+      vy: -(0.4 + Math.random()*0.8),
+      a: 0.3 + Math.random()*0.5
+    });
+  }
+}
+
+function spawnObstacle(){
+  let interval = Math.max(55, 110 - level*6);
+  if(frame % interval !== 0) return;
+
+  let types = ['jellyfish','rock','fish','mine'];
+  if(level < 2) types = ['jellyfish','rock'];
+  if(level < 4) types = ['jellyfish','rock','fish'];
+
+  let type = types[Math.floor(Math.random()*types.length)];
+  let obj = {type, vx: -(2.5 + level*0.4 + Math.random()*1.5), angle:0};
+
+  if(type==='jellyfish'){
+    obj.w=60;obj.h=90;
+    obj.x=W+20;obj.y=30+Math.random()*(H-130);
+    obj.vy=(Math.random()-0.5)*0.8;
+  } else if(type==='rock'){
+    obj.w=50+Math.random()*30;obj.h=obj.w*0.8;
+    obj.x=W+20;obj.y=H/4+Math.random()*(H*0.5);
+    obj.pts=genRockPts(obj.w,obj.h);
+    obj.vx*=0.85;
+  } else if(type==='fish'){
+    obj.w=70;obj.h=40;
+    obj.x=W+20;obj.y=40+Math.random()*(H-100);
+    obj.vy=(Math.random()-0.5)*1.2;
+    // Sometimes comes from left
+    if(Math.random()<0.25){obj.x=-90;obj.vx=Math.abs(obj.vx)}
+  } else if(type==='mine'){
+    obj.w=44;obj.h=44;
+    obj.x=W+20;obj.y=60+Math.random()*(H-140);
+    obj.vy=(Math.random()-0.5)*0.6;
+  }
+  obstacles.push(obj);
+}
+
+function spawnCoin(){
+  if(frame%80===0 && Math.random()<0.6){
+    coins.push({
+      x:W+10,y:60+Math.random()*(H-130),
+      r:14,rot:0,
+      vx:-(2+level*0.3)
+    });
+  }
+}
+
+function spawnCoral(){
+  if(frame===1 || frame%300===0){
+    for(let i=0;i<4;i++){
+      corals.push({
+        x:W+i*200+Math.random()*100,
+        h:30+Math.random()*60,
+        w:20+Math.random()*30,
+        col:CORAL_COLS[Math.floor(Math.random()*CORAL_COLS.length)],
+        stems:3+Math.floor(Math.random()*4),
+        vx:-0.6
+      });
+    }
+  }
+}
+
+function genRockPts(w,h){
+  let pts=[];
+  let n=7;
+  for(let i=0;i<n;i++){
+    let a=(i/n)*Math.PI*2;
+    let r=(w/2)*(0.7+Math.random()*0.3);
+    pts.push([Math.cos(a)*r, Math.sin(a)*(h/2)*(0.7+Math.random()*0.3)]);
+  }
+  return pts;
+}
+
+function spawnParticle(x,y,col,count=6){
+  for(let i=0;i<count;i++){
+    particles.push({
+      x,y,col,
+      vx:(Math.random()-0.5)*5,
+      vy:(Math.random()-0.5)*5,
+      r:2+Math.random()*4,
+      life:30+Math.random()*20,
+      maxLife:50
+    });
+  }
+}
+
+function hitTest(a,b){
+  let margin=12;
+  return !(a.x+a.w-margin<b.x+margin ||
+           a.x+margin>b.x+b.w-margin ||
+           a.y+a.h-margin<b.y+margin ||
+           a.y+margin>b.y+b.h-margin);
+}
+
+function hitCircle(ax,ay,ar,bx,by,br){
+  let dx=ax-bx,dy=ay-by;
+  return Math.sqrt(dx*dx+dy*dy)<ar+br-8;
+}
+
+function updateShrimp(){
+  let s=shrimp;
+  let spd = s.speed;
+
+  if(keys['ArrowUp']||keys['w']||keys['W'])    s.vy -= 0.55;
+  if(keys['ArrowDown']||keys['s']||keys['S'])   s.vy += 0.55;
+  if(keys['ArrowLeft']||keys['a']||keys['A'])   s.vx -= 0.55;
+  if(keys['ArrowRight']||keys['d']||keys['D'])  s.vx += 0.55;
+
+  s.vy *= 0.88; s.vx *= 0.88;
+  s.vy = Math.max(-spd, Math.min(spd, s.vy));
+  s.vx = Math.max(-spd*0.7, Math.min(spd*0.7, s.vx));
+
+  s.x += s.vx; s.y += s.vy;
+
+  // Bounds
+  s.x = Math.max(10, Math.min(W-s.w-10, s.x));
+  s.y = Math.max(10, Math.min(H-s.h-10, s.y));
+
+  // Trail
+  s.trail.unshift({x:s.x+s.w/2, y:s.y+s.h/2});
+  if(s.trail.length>10) s.trail.pop();
+
+  if(s.invincible>0) s.invincible--;
+}
+
+function updateAll(){
+  // Bubbles
+  bubbles.forEach(b=>{b.y+=b.vy;b.x+=Math.sin(b.y*0.04)*0.4});
+  bubbles=bubbles.filter(b=>b.y>-20 && b.a>0.05);
+
+  // Corals (decorative, behind)
+  corals.forEach(c=>c.x+=c.vx);
+  corals=corals.filter(c=>c.x>-200);
+
+  // Obstacles
+  obstacles.forEach(o=>{
+    o.x+=o.vx;
+    if(o.vy!==undefined) o.y+=o.vy;
+    if(o.type==='jellyfish') o.y+=Math.sin(frame*0.04)*0.6;
+    if(o.type==='mine') o.angle+= 0.01;
+    // Bounce fish vertically
+    if(o.type==='fish'){
+      if(o.y<30||o.y>H-o.h-30) o.vy*=-1;
+    }
+  });
+  obstacles=obstacles.filter(o=>o.x>-200&&o.x<W+200);
+
+  // Coins
+  coins.forEach(c=>{c.x+=c.vx;c.rot+=0.05});
+  coins=coins.filter(c=>c.x>-30);
+
+  // Particles
+  particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.08;p.life--;});
+  particles=particles.filter(p=>p.life>0);
+}
+
+function checkCollisions(){
+  let s=shrimp;
+  if(s.invincible>0) return;
+
+  // Obstacles
+  for(let o of obstacles){
+    let hit=false;
+    if(o.type==='mine'){
+      hit=hitCircle(s.x+s.w/2,s.y+s.h/2,s.h/2, o.x+o.w/2,o.y+o.h/2,o.w/2);
+    } else {
+      hit=hitTest(s,o);
+    }
+    if(hit){
+      spawnParticle(s.x+s.w/2,s.y+s.h/2,'#f97316',14);
+      if(o.type==='mine') spawnParticle(o.x+o.w/2,o.y+o.h/2,'#ff4444',18);
+      lives--;
+      flashTimer=18;
+      s.invincible=90;
+      updateHUD();
+      obstacles=obstacles.filter(ob=>ob!==o);
+      if(lives<=0){ setTimeout(doGameOver,200); return; }
+      break;
+    }
+  }
+
+  // Coins
+  coins=coins.filter(c=>{
+    if(hitCircle(s.x+s.w/2,s.y+s.h/2,s.h/2,c.x,c.y,c.r+4)){
+      score+=10;
+      spawnParticle(c.x,c.y,COIN_COL,8);
+      updateHUD();
+      return false;
+    }
+    return true;
+  });
+}
+
+function updateScore(){
+  if(frame%30===0){
+    score++;
+    // Level up every 100 pts
+    let newLevel = Math.floor(score/100)+1;
+    if(newLevel > level){
+      level=newLevel;
+      levelUpTimer=90;
+    }
+    updateHUD();
+  }
+}
+
+function updateHUD(){
+  document.getElementById('scoreDisplay').textContent = score;
+  document.getElementById('levelDisplay').textContent = level;
+  let hearts='';
+  for(let i=0;i<lives;i++) hearts+='🦐';
+  document.getElementById('livesDisplay').textContent = hearts || '💀';
+}
+
+/* ================================================================
+   RENDER LOOP
+================================================================ */
+
+function render(){
+  ctx.clearRect(0,0,W,H);
+
+  // Flash on hit
+  if(flashTimer>0){
+    ctx.fillStyle=`rgba(255,80,0,${flashTimer/18*0.3})`;
+    ctx.fillRect(0,0,W,H);
+    flashTimer--;
+  }
+
+  drawOceanBG();
+
+  // Corals (behind everything)
+  corals.forEach(drawCoral);
+
+  // Back bubbles
+  bubbles.filter((_,i)=>i%2===0).forEach(drawBubble);
+
+  // Coins
+  coins.forEach(drawCoin);
+
+  // Obstacles
+  obstacles.forEach(drawObstacle);
+
+  // Shrimp
+  drawShrimp();
+
+  // Front bubbles
+  bubbles.filter((_,i)=>i%2===1).forEach(drawBubble);
+
+  // Particles
+  particles.forEach(drawParticle);
+
+  // Level up banner
+  if(levelUpTimer>0){
+    ctx.save();
+    let a = levelUpTimer>60 ? 1 : levelUpTimer/60;
+    ctx.globalAlpha=a;
+    ctx.fillStyle='rgba(10,30,60,0.7)';
+    ctx.fillRect(W/2-140,H/2-36,280,72);
+    ctx.strokeStyle=`rgba(232,149,96,${a})`;
+    ctx.lineWidth=2;
+    ctx.strokeRect(W/2-140,H/2-36,280,72);
+    ctx.fillStyle='#fde68a';
+    ctx.font="bold 22px 'Playfair Display', serif";
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(`⭐ NIVEL ${level} ⭐`,W/2,H/2);
+    ctx.restore();
+    levelUpTimer--;
+  }
+
+  // Score on canvas
+  ctx.save();
+  ctx.fillStyle='rgba(255,255,255,0.12)';
+  ctx.font="600 15px Montserrat";
+  ctx.textAlign='right';ctx.textBaseline='top';
+  ctx.fillText(`Hi-Score: ${hiScore}`,W-16,12);
+  ctx.restore();
+}
+
+/* ================================================================
+   GAME LOOP
+================================================================ */
+
+function loop(){
+  if(state!=='playing'){return}
+  frame++;
+  spawnBubbles();
+  spawnObstacle();
+  spawnCoin();
+  spawnCoral();
+  updateShrimp();
+  updateAll();
+  checkCollisions();
+  updateScore();
+  render();
+  animId=requestAnimationFrame(loop);
+}
+
+/* ================================================================
+   STATE MANAGEMENT
+================================================================ */
+
+function startGame(){
+  score=0;lives=3;level=1;frame=0;
+  obstacles=[];coins=[];particles=[];bubbles=[];corals=[];
+  shrimp.x=140;shrimp.y=H/2;shrimp.vx=0;shrimp.vy=0;shrimp.invincible=0;shrimp.trail=[];
+  updateHUD();
+  document.getElementById('startScreen').classList.add('hidden');
+  document.getElementById('gameOverScreen').classList.add('hidden');
+  document.getElementById('pauseScreen').classList.add('hidden');
+  state='playing';
+  loop();
+}
+
+function doGameOver(){
+  state='gameover';
+  cancelAnimationFrame(animId);
+  if(score>hiScore) hiScore=score;
+  render();
+  document.getElementById('finalScore').textContent=score;
+  document.getElementById('highScoreLabel').textContent=`Récord: ${hiScore}`;
+  document.getElementById('gameOverScreen').classList.remove('hidden');
+}
+
+function pauseGame(){
+  if(state==='playing'){
+    state='paused';
+    cancelAnimationFrame(animId);
+    document.getElementById('pauseScreen').classList.remove('hidden');
+  } else if(state==='paused'){
+    document.getElementById('pauseScreen').classList.add('hidden');
+    state='playing';
+    loop();
+  }
+}
+
+/* ================================================================
+   INPUT
+================================================================ */
+
+document.addEventListener('keydown',e=>{
+  keys[e.key]=true;
+  if(e.key==='p'||e.key==='P') pauseGame();
+  if((e.key===' ')&&state==='gameover') startGame();
+});
+document.addEventListener('keyup',e=>{keys[e.key]=false});
+
+// Touch controls
+canvas.addEventListener('touchstart',e=>{
+  e.preventDefault();
+  let t=e.touches[0];
+  touchStart={x:t.clientX,y:t.clientY};
+},{passive:false});
+
+canvas.addEventListener('touchmove',e=>{
+  e.preventDefault();
+  if(!touchStart) return;
+  let t=e.touches[0];
+  let dx=t.clientX-touchStart.x, dy=t.clientY-touchStart.y;
+  shrimp.vx = Math.max(-shrimp.speed, Math.min(shrimp.speed, dx*0.12));
+  shrimp.vy = Math.max(-shrimp.speed, Math.min(shrimp.speed, dy*0.12));
+},{passive:false});
+
+canvas.addEventListener('touchend',e=>{e.preventDefault();touchStart=null;},{passive:false});
+
+document.getElementById('startBtn').onclick   = startGame;
+document.getElementById('restartBtn').onclick  = startGame;
+document.getElementById('resumeBtn').onclick   = pauseGame;
+
+// Hamburger
+const hamBtn=document.getElementById('hamburger');
+const mobMenu=document.getElementById('mobileMenu');
+hamBtn.addEventListener('click',()=>{
+  hamBtn.classList.toggle('active');
+  mobMenu.classList.toggle('open');
+});
+
+// Initial render
+drawOceanBG();
+spawnBubbles();
+</script>
+</body>
+</html>
